@@ -1,0 +1,21 @@
+<div class="container">
+    <h1 class= "container-title" >Editar contatos</h1>
+    <form action="/contacts/editcontact" method="post" class="form-add">
+        <input type="hidden" name="id" id="id" value="{{contact.id}}">
+        <div class="container-fields">
+            <label for="nome">Nome*: </label>
+            <input class="textfields" type="text" id="name" name="name" required value="{{contact.name}}">
+        </div>
+        <div class="container-fields">
+            <label for="fone">Telefone*: </label>
+            <input class="textfields" type="number" id="fone" name="fone" required value="{{contact.fone}}">
+        </div>
+        <div class="container-fields">
+            <label for="email">E-mail: </label>
+            <input class="textfields" type="email" id="email" name="email" value="{{contact.email}}">
+        </div>
+        <div class="container-bttns">
+            <input class="bttn-submit" type="submit" value="Confirmar">
+        </div>
+    </form>
+</div>
