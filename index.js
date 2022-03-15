@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const contacts = require('./contacts')
 const conn = require('./db/conn')
+const Contact = require('./models/Contact')
 
 
 const app = express()
@@ -17,8 +18,10 @@ app.use(express.urlencoded({
 app.use(express.json())
 app.use('/contacts', contacts)
 
-app.get('/', (req, res)=>{
-    res.render('home')
+app.get('/', async (req, res)=>{
+    const contacts = await Contact.findAll({raw: true})
+
+    res.render('home', {contacts: contacts})
 })
 
 conn.sync().then(()=>{

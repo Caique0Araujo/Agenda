@@ -1,4 +1,21 @@
-<h1>Agenda de contatos</h1>
-<p>
-    Agenda de contatos desenvolvida para fins didáticos.
-</p>
+<h1 style="margin-bottom: 5%;">Agenda de contatos</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Fone</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each contacts}}
+        <tr>
+        <th scope="row">{{this.id}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.fone}}</td>
+        </tr>
+    {{/each}}
+  </tbody>
+</table>
