@@ -12,8 +12,12 @@
 <body>
     <nav class="navbar navbar-inverse" id="menu">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">Agenda</a>
+        <div class="navbar-header" id="nav-header">
+            <a class="navbar-brand" href="/" style="justify-content: center; align-items: center;
+    display: flex; color: aliceblue;">
+                <span class="glyphicon glyphicon-earphone" style=" margin-right: 0.4em;"></span>
+                    Agenda
+            </a>
         </div>
         <ul class="nav navbar-nav" id="home-link">
             <li class="active"><a class="dropdown-toggle"  data-toggle="dropdown" href="">Contatos</a>
@@ -34,6 +38,10 @@
                     <li><a href="/events/events">Lista</a></li>
                 </ul>
             </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
     </div>
     </nav>

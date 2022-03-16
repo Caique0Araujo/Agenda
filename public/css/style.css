@@ -12,7 +12,7 @@
 
 a {
     text-decoration: none;
-    color: black;
+    color: rgb(60, 60, 60);
 }
 
 body{
@@ -139,4 +139,9 @@ input {
 
 #home-link{
     margin-left: 5%;
+}
+
+#homelink .users{
+    background-color: blue;
+    justify-content: flex-end;
 }
