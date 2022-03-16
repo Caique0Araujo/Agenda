@@ -1,9 +1,9 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-const contacts = require('./contacts')
+
+const contactRoutes = require('./routes/contactRoutes')
 const conn = require('./db/conn')
 const Contact = require('./models/Contact')
-
 
 const app = express()
 
@@ -11,12 +11,14 @@ app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
+
 app.use(express.urlencoded({
     extended: true
 }))
 
 app.use(express.json())
-app.use('/contacts', contacts)
+
+app.use('/contacts', contactRoutes)
 
 app.get('/', async (req, res)=>{
     const contacts = await Contact.findAll({raw: true})
