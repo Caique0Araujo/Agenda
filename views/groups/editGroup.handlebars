@@ -1,0 +1,17 @@
+<div class="container">
+    <h1 class= "container-title" >Editar grupos</h1>
+    <form action="/groups/editgroup" method="post" class="form-add">
+        <input type="hidden" name="id" id="id" value="{{group.id}}">
+        <div class="container-fields">
+            <label for="name">Nome*: </label>
+            <input class="textfields" type="text" id="name" name="name" required value="{{group.name}}">
+        </div>
+        <div class="container-fields">
+            <label for="description">Descrição: </label>
+            <input class="textfields" type="text" id="description" name="description" required value="{{group.description}}">
+        </div>
+        <div class="container-bttns">
+            <input class="bttn-submit" type="submit" value="Confirmar">
+        </div>
+    </form>
+</div>

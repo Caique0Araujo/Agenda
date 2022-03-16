@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars')
 const contactRoutes = require('./routes/contactRoutes')
 const conn = require('./db/conn')
 const Contact = require('./models/Contact')
+const groupRoutes = require('./routes/groupRoutes')
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 app.use('/contacts', contactRoutes)
+app.use('/groups', groupRoutes)
 
 app.get('/', async (req, res)=>{
     const contacts = await Contact.findAll({raw: true})

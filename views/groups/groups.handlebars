@@ -1,0 +1,11 @@
+<h1>Grupos</h1>
+<div class="contacts-container">
+    {{#each groups}}
+        <div>
+            <p><span class="bold"><a href="/groups/group/{{this.id}}">{{this.name}}</a></span> - Descrição: {{this.description}}</p>
+        </div>
+    {{/each}}
+</div>
+<div class="bttn-links">
+    <a id="bttn-contact" href="/groups/add">Adicionar grupos</a>
+</div>
