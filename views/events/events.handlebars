@@ -1,0 +1,11 @@
+<h1>Eventos</h1>
+<div class="contacts-container">
+    {{#each events}}
+        <div>
+            <p><span class="bold"><a href="/events/event/{{this.id}}">{{this.name}}</a></span> - Descrição: {{this.description}}</p>
+        </div>
+    {{/each}}
+</div>
+<div class="bttn-links">
+    <a id="bttn-contact" href="/events/add">Adicionar eventos</a>
+</div>
