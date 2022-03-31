@@ -1,4 +1,4 @@
-const {DataTypes} = require('sequelize')
+const {DataTypes, sequelize} = require('sequelize')
 const db = require('../db/conn')
 
 const Event = db.define('Event', {
@@ -19,5 +19,8 @@ const Event = db.define('Event', {
 
     },
 })
+
+
+
 
 module.exports = Event

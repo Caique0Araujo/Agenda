@@ -4,8 +4,9 @@
         <div class="contacts-container">
             {{#each events}}
                 <div>
-                    <p><span class="bold"><a href="/events/event/{{this.id}}">{{this.name}}</a></span> - Descrição: {{this.description}}</p>
-                    <p>Data - {{this.eventDate}}</p>
+                    <p><span class="bold"><a href="/events/event/{{this.id}}" id="name-link">{{this.name}}</a></span></p>
+                    <p>Descrição: {{this.description}}</p>
+                    <p>Data: {{this.eventDate}}</p>
                 </div>
             {{/each}}
         </div>

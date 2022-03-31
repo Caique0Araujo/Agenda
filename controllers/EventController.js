@@ -1,4 +1,5 @@
 const Event = require('../models/Event')
+const {DateTime} = require('luxon')
 
 module.exports = class EventController{
     static createEvent(req, res){
@@ -7,10 +8,10 @@ module.exports = class EventController{
     static async createEventSave(req, res){
         const name = req.body.name
         const description = req.body.description
-        const date = req.body.date
-        console.log(date)
+        const eventDate = req.body.date
 
-        await Event.create({name, description, date})
+
+        await Event.create({name, description, eventDate})
         res.redirect('events/') 
     }
 
@@ -40,10 +41,14 @@ module.exports = class EventController{
 
 
     static async showEvents(req, res){
-        const events = await Event.findAll({raw: true})
 
-        console.log(events)
-
+        const events = await Event.findAll({raw: true})    
+        
+        events.forEach(event => {
+            let dt = DateTime.fromJSDate(event.eventDate);
+            event.eventDate = dt.setLocale('pt-br').toLocaleString(DateTime.DATETIME_FULL);    
+        });// Substituir para classe
+        
         res.render('events/events', {events: events})
     }
     static async showEvent(req, res){

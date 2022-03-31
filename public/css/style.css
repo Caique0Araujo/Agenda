@@ -198,3 +198,13 @@ input {
 #main-link:hover{
     color: white;
 }
+
+#name-link{
+    font-size: large;
+    font-weight: 600;
+    color: black;
+}
+
+#name-link:hover{
+    color: rgb(110, 110, 110);
+}
