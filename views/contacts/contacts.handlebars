@@ -1,11 +1,17 @@
-<h1>Contatos</h1>
-<div class="contacts-container">
-    {{#each contacts}}
-        <div>
-            <p><span class="bold"><a href="/contacts/contact/{{this.id}}">{{this.name}}</a></span> - Telefone: {{this.fone}} - Email: {{this.email}}</p>
+
+<div class="main-container">
+    <div class="sub-container">
+        <h1>Contatos</h1>
+        <div class="contacts-container">
+            {{#each contacts}}
+                <div>
+                    <p><span class="bold"><a href="/contacts/contact/{{this.id}}">{{this.name}}</a></span> - Telefone: {{this.fone}} - Email: {{this.email}}</p>
+                </div>
+            {{/each}}
         </div>
-    {{/each}}
+        <div class="bttn-links">
+            <a id="bttn-contact" href="/contacts/add">Adicionar contatos</a>
+        </div>
+    </div>
 </div>
-<div class="bttn-links">
-    <a id="bttn-contact" href="/contacts/add">Adicionar contatos</a>
-</div>
+

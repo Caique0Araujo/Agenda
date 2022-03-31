@@ -9,7 +9,14 @@ const Event = db.define('Event', {
     },
     description: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        require: false
+    },
+    eventDate: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        require: false,
+
     },
 })
 

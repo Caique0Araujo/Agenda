@@ -7,9 +7,11 @@ module.exports = class EventController{
     static async createEventSave(req, res){
         const name = req.body.name
         const description = req.body.description
+        const date = req.body.date
+        console.log(date)
 
-        await Event.create({name, description})
-        res.redirect('events/')
+        await Event.create({name, description, date})
+        res.redirect('events/') 
     }
 
 
@@ -39,6 +41,8 @@ module.exports = class EventController{
 
     static async showEvents(req, res){
         const events = await Event.findAll({raw: true})
+
+        console.log(events)
 
         res.render('events/events', {events: events})
     }
