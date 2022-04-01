@@ -42,6 +42,7 @@ h1{
 .container{
     box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.23);
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -59,9 +60,6 @@ h1{
     margin: 20px;
 }
 
-form{
-    width: 50%;
-}
 
 form .container-fields{
     margin-bottom: 15px;
@@ -130,8 +128,10 @@ input {
     border: 1px solid black;
 }
 
-.contacts-container div{
+
+.models-container{
     border-bottom: 1px solid #ccc;
+    width: 100%;
     padding: 10px;
     margin: 5px;
 }
@@ -207,4 +207,10 @@ input {
 
 #name-link:hover{
     color: rgb(110, 110, 110);
+}
+
+.sub-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -1,13 +1,17 @@
-<h1>{{group.name}}</h1>
-<div class="contacts-container">
-    <div>
-        <p>Descrição: {{group.description}}</p>
+<div class="container-father">
+    <div class="container">
+        <h1>{{group.name}}</h1>
+        <div class="models-container">
+            <div>
+                <p>Descrição: {{group.description}}</p>
+            </div>
+        </div>
+        <div class="bttn-links">
+            <a id="bttn-contact" href="/groups/edit/{{group.id}}">Editar grupo</a>
+            <form action="/groups/delete" method="post">
+                <input type="hidden" name="id" value="{{group.id}}">
+                <input type="submit" value="Deletar grupo" id="bttn-contact">
+            </form>
+        </div>
     </div>
-</div>
-<div class="bttn-links">
-    <a id="bttn-contact" href="/groups/edit/{{group.id}}">Editar grupo</a>
-    <form action="/groups/delete" method="post">
-        <input type="hidden" name="id" value="{{group.id}}">
-        <input type="submit" value="Deletar grupo" id="bttn-contact">
-    </form>
 </div>

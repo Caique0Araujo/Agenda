@@ -2,10 +2,10 @@
 <div class="main-container">
     <div class="sub-container">
         <h1>Contatos</h1>
-        <div class="contacts-container">
+        <div class="models-container">
             {{#each contacts}}
                 <div>
-                    <p><span class="bold"><a href="/contacts/contact/{{this.id}}">{{this.name}}</a></span> - Telefone: {{this.fone}} - Email: {{this.email}}</p>
+                    <p><span class="bold"><a href="/contacts/contact/{{this.id}}" id="name-link">{{this.name}}</a></span> - Telefone: {{this.fone}} - Email: {{this.email}}</p>
                 </div>
             {{/each}}
         </div>

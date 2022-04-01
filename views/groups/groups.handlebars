@@ -1,10 +1,10 @@
 <div class="main-container">
     <div class="sub-container">
         <h1>Grupos</h1>
-        <div class="contacts-container">
+        <div class="models-container">
             {{#each groups}}
                 <div>
-                    <p><span class="bold"><a href="/groups/group/{{this.id}}">{{this.name}}</a></span> - Descrição: {{this.description}}</p>
+                    <p><span class="bold"><a href="/groups/group/{{this.id}}" id="name-link">{{this.name}}</a></span> - Descrição: {{this.description}}</p>
                 </div>
             {{/each}}
         </div>
