@@ -1,5 +1,6 @@
 const Event = require('../models/Event')
 const {DateTime} = require('luxon')
+const DateService = require('../models/DateService')
 
 module.exports = class EventController{
     static createEvent(req, res){
@@ -45,15 +46,16 @@ module.exports = class EventController{
         const events = await Event.findAll({raw: true})    
         
         events.forEach(event => {
-            let dt = DateTime.fromJSDate(event.eventDate);
-            event.eventDate = dt.setLocale('pt-br').toLocaleString(DateTime.DATETIME_FULL);    
-        });// Substituir para classe
+            event.eventDate = DateService.formatDate(event.eventDate)
+        });
         
         res.render('events/events', {events: events})
     }
     static async showEvent(req, res){
         const id = req.params.id
         const event = await Event.findOne({raw: true, where: {id: id}})
+        event.eventDate = DateService.formatDate(event.eventDate) 
+
         
         res.render('events/event', {event})
     }
