@@ -1,17 +1,18 @@
 const express = require('express')
 const router = express.Router()
+const checkAuth = require('../services/AuthenticateService').checkAuth
 
 const GroupController = require('../controllers/GroupController')
 
-router.get('/add', GroupController.createGroup)
-router.post('/addgroup', GroupController.createGroupSave)
+router.get('/add', checkAuth, GroupController.createGroup)
+router.post('/addgroup', checkAuth, GroupController.createGroupSave)
 
-router.get('/edit/:id', GroupController.editGroup)
-router.post('/editgroup', GroupController.editGroupPost)
+router.get('/edit/:id', checkAuth, GroupController.editGroup)
+router.post('/editgroup', checkAuth, GroupController.editGroupPost)
 
-router.get('/groups', GroupController.showGroups)
-router.get('/group/:id', GroupController.showGroup)
+router.get('/groups', checkAuth, GroupController.showGroups)
+router.get('/group/:id', checkAuth, GroupController.showGroup)
 
-router.post('/delete', GroupController.deleteGroup)
+router.post('/delete', checkAuth, GroupController.deleteGroup)
 
 module.exports = router

@@ -1,0 +1,19 @@
+<div class="container-father">
+    <div class="container">
+        <h1>{{event.name}}</h1>
+        <div class="contacts">
+            <form action="/events/event/addContact" method="post">
+                <input type="hidden" name="event" id="event" value="{{event.id}}">
+                {{#each contacts}}
+                    <div class="checkbox-container">
+                        <span class="checkbox-l">
+                            <input type="checkbox" name="contact" id="contact" value="{{this.id}}">
+                            <label for="contact">{{this.name}}</label>
+                        </span>
+                    </div>
+                {{/each}}
+                <input type="submit" value="Adicionar" id="bttn-contact">
+            </form>
+        </div>
+    </div>
+</div>

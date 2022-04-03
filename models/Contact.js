@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize')
 const db = require('../db/conn')
-const Group = require('./Group')
 
 const Contact = db.define('Contact', {
     name: {
@@ -18,20 +17,6 @@ const Contact = db.define('Contact', {
     },
 })
 
-Contact.belongsToMany(
-    Group,
-    {
-        through: 'Contact_Group',
-        foreignKey: 'Contact_contactId'
-    }
-)
 
-Group.belongsToMany(
-    Contact, 
-    {
-        through: 'Contact_Group',
-        foreignKey: 'Group_groupId'
-    }
-)
 
 module.exports = Contact

@@ -1,17 +1,22 @@
 const express = require('express')
 const router = express.Router()
+const checkAuth = require('../services/AuthenticateService').checkAuth
+
 
 const EventController = require('../controllers/EventController')
 
-router.get('/add', EventController.createEvent)
-router.post('/addevent', EventController.createEventSave)
+router.get('/add', checkAuth, EventController.createEvent)
+router.post('/addevent', checkAuth, EventController.createEventSave)
 
-router.get('/edit/:id', EventController.editEvent)
-router.post('/editevent', EventController.editEventPost)
+router.get('/edit/:id', checkAuth, EventController.editEvent)
+router.post('/editevent', checkAuth, EventController.editEventPost)
 
-router.get('/events', EventController.showEvents)
-router.get('/event/:id', EventController.showEvent)
+router.get('/events', checkAuth, EventController.showEvents)
+router.get('/event/:id', checkAuth, EventController.showEvent)
 
-router.post('/delete', EventController.deleteEvent)
+router.post('/delete', checkAuth, EventController.deleteEvent)
+
+router.get('/event/addContact/:id', checkAuth, EventController.addContacts)
+router.post('/event/addContact', checkAuth, EventController.addContactPost)
 
 module.exports = router
