@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const checkAuth = require('../services/AuthenticateService').checkAuth
 
-
 const ContactController = require('../controllers/ContactController')
 
 

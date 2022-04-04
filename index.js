@@ -73,6 +73,7 @@ app.get('/',  checkAuth, async (req, res)=>{
     res.render('home', {contacts: contacts})
 })
 
+
 conn.sync().then(()=>{
     app.listen(3000)
 }).catch((err)=>{

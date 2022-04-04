@@ -3,11 +3,35 @@
 * {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+#nav-container{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nav-container #nav-header{
+    margin-left: 0;
+    margin-right: auto;
+}
+
+#nav-container #nav-right{
+    margin-right: 0;
+    margin-left: auto;
 }
 
 #menu{
     background-color: black;
     border-radius: 0;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 a {
@@ -31,22 +55,35 @@ h1{
     text-align: center;
 }
 
+#nav-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
 .container-father{
+    padding: 10px;
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgb(181,181,181);
+    background: linear-gradient(0deg, rgba(181,181,181,1) 0%, rgba(213,213,213,1) 25%, rgba(245,245,245,1) 100%);
 }
 
 .container{
+
+    max-width: fit-content;
     box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.23);
     display: flex;
-    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
+    margin-top: 20px;
 }
 
 .container .container-title {
@@ -148,9 +185,6 @@ input {
     font-weight: bold;
 }
 
-#home-link{
-    margin-left: 5%;
-}
 
 #homelink .users{
     background-color: blue;
@@ -164,6 +198,7 @@ input {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    margin: 20px 0;
 }
 
 .sub-container{
@@ -186,6 +221,8 @@ input {
 
 #nav-header{
     padding-left: 1em;
+    position: left;
+    right: 0;
 }
 
 #main-link{
@@ -224,17 +261,20 @@ input {
 .message {
     padding: 1em;
     color: #004085;
+    
     background-color: #cce5ff;
     border: 1px solid #b8daff;
     border-radius: 5px;
     text-align: center;
-    margin: 0 auto 2em;
+    margin: 20px 0;
     max-width: 60%;
   }
   
 .message-container {
-    min-height: 60vh;
     padding: 2em;
+    height: auto;
+    display: flex;
+    justify-content: center;
 }
 
 p{

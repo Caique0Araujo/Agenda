@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Agenda</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/img/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -13,7 +14,7 @@
 
 <body>
     <nav class="navbar navbar-inverse" id="menu">
-        <div class="container-fluid">
+        <div class="container-fluid" id="nav-container">
             <div class="navbar-header" id="nav-header">
                 <a class="navbar-brand" href="/" id="main-link">
                     <span class="glyphicon glyphicon-earphone" style=" margin-right: 0.4em;"></span>
@@ -21,7 +22,7 @@
                 </a>
             </div>
             <ul class="nav navbar-nav" id="home-link">
-                {{#if session.userid}}
+            {{#if session.userid}}
                 <li class="active"><a class="dropdown-toggle" data-toggle="dropdown" href=""
                         id="dropdown-bttn">Contatos</a>
                     <ul class="dropdown-menu">
@@ -43,10 +44,8 @@
                         <li><a href="/events/events">Lista</a></li>
                     </ul>
                 </li>
-                {{/if}}
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                {{#if session.userid}}
+            <ul class="nav navbar-nav navbar-right" id="nav-right">
                 <li>
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span>
@@ -65,8 +64,8 @@
             </ul>
         </div>
     </nav>
-    <div class="message.container">
         {{#if messages.message}}
+    <div class="message-container">
         <div class="message">
             {{messages.message}}
         </div>
