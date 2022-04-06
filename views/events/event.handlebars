@@ -4,6 +4,13 @@
             <div>
                 <p>Descrição: {{event.description}}</p>
                 <p>Data: {{event.eventDate}}</p>
+                <p>Contatos: 
+                    {{#each event.Contacts}}
+                            <span>
+                                {{this.name}},
+                            </span>
+                    {{/each}}
+                </p>
 
             </div>
         </div>
@@ -14,6 +21,8 @@
                 <input type="submit" value="Deletar evento" id="bttn-contact">
             </form>
             <a href="/events_contacts/addContact/{{event.id}}" id="bttn-contact">Adicionar contatos</a>
+            <a href="/events_contacts/editContacts/{{event.id}}" id="bttn-contact">Editar contatos</a>
+
         </div>
 
     </div>

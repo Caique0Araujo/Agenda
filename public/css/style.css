@@ -7,6 +7,11 @@
     margin: 0;
 }
 
+body{
+    background: rgb(205,205,205);
+    background: linear-gradient(180deg, rgba(205,205,205,1) 0%, rgba(202,202,202,1) 17%, rgba(219,219,219,1) 49%, rgba(255,255,255,1) 91%);
+
+}
 
 
 #nav-container{
@@ -31,6 +36,7 @@
     margin-bottom: 0;
     display: flex;
     justify-content: space-between;
+    width: 100vw;
 }
 
 a {
@@ -67,11 +73,10 @@ h1{
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgb(205,205,205);
-    background: linear-gradient(180deg, rgba(205,205,205,1) 0%, rgba(202,202,202,1) 17%, rgba(219,219,219,1) 49%, rgba(255,255,255,1) 91%);
-}
+    }
 
 .container{
 
@@ -82,7 +87,6 @@ h1{
     justify-content: center;
     align-items: center;
     background-color: rgb(255, 255, 255);
-    margin-top: 20px;
 }
 
 .container .container-title {
@@ -197,7 +201,6 @@ input {
     width: 70vw;
     height: 800px;
     padding: 20px;
-    margin-top: 20vh;
 }
 
 #dropdown-bttn{
@@ -251,18 +254,15 @@ input {
 .message {
     padding: 1em;
     color: #004085;
-    
     background-color: #cce5ff;
     border: 1px solid #b8daff;
     border-radius: 5px;
     text-align: center;
-    margin: 20px 0;
     max-width: 60%;
   }
   
 .message-container {
     padding: 2em;
-    height: auto;
     display: flex;
     justify-content: center;
 }

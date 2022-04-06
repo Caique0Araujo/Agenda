@@ -1,0 +1,15 @@
+<div class="container">
+    <h1 class= "container-title" >Remover contatos do: {{events.name}}</h1>
+    <form action="/events_contacts/removeContacts" method="post" class="form-add">
+            <input type="hidden" name="idEvent" value="{{events.id}}">
+                {{#each events.Contacts}}
+                    <div class="checkbox-container">
+                        <span class="checkbox-l">
+                            <input type="checkbox" name="contacts" id="contacts" value="{{this.id}}">
+                            <label for="contact">{{this.name}}</label>
+                        </span>
+                    </div>   
+                {{/each}}
+            <input type="submit" value="Remover" id="bttn-contact">
+    </form>
+</div>

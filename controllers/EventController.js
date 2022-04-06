@@ -1,7 +1,4 @@
 const Event = require('../models/Event')
-const Event_Contact = require('../models/Event_Contact')
-const Contact = require('../models/Contact')
-const {DateTime} = require('luxon')
 const DateService = require('../services/DateService')
 
 const EventContactController = require('../controllers/EventContactController')
@@ -25,7 +22,7 @@ module.exports = class EventController{
     static async editEvent(req, res){
         const id = req.params.id
         const event = await Event.findOne({raw: true, where: {id: id}})
-        
+        event.eventDate = DateService.formateDateForm(event.eventDate, true)
         res.render('events/editEvent', {event})
     }
     static async editEventPost(req, res){
@@ -33,11 +30,13 @@ module.exports = class EventController{
         const id = req.body.id
         const name = req.body.name
         const description = req.body.description
+        const eventDate = req.body.date
 
         const event = {
             id,
             name,
-            description
+            description,
+            eventDate,
         }
 
         await Event.update(event, {where: {id:id}})
@@ -48,13 +47,11 @@ module.exports = class EventController{
 
     static async showEvents(req, res){
 
-        const events = await EventContactController.showContacts()
+        const events = await EventContactController.showEventsContacts()
 
         events.forEach(event => {
-            event.eventDate = DateService.formatDate(event.eventDate)
-        });
-
-
+            event.eventDate = DateService.formatDate(event.eventDate, false)
+        })
 
         res.render('events/events', {events: events})
     }
@@ -62,11 +59,12 @@ module.exports = class EventController{
 
     static async showEvent(req, res){
         const id = req.params.id
-        const event = await Event.findOne({raw: true, where: {id: id}})
-        event.eventDate = DateService.formatDate(event.eventDate) 
+        const event = await EventContactController.showEventContacts(id)
+        event.eventDate = DateService.formatDate(event.eventDate, false) 
+        console.log(event)
 
         
-        res.render('events/event', {event})
+        res.render('events/event', {event: event})
     }
 
 

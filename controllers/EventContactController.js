@@ -25,7 +25,7 @@ module.exports = class EventContactController{
 
     }
 
-    static async showContacts(){
+    static async showEventsContacts(){
 
         const events = await Event.findAll({
             include: Contact
@@ -39,6 +39,47 @@ module.exports = class EventContactController{
             return null
         }
 
+    }
+
+    static async showEventContacts(id){
+        const event = await Event.findByPk(id, {
+            include: Contact
+        })
+        if(event){
+            const contact = JSON.parse(JSON.stringify(event))
+            return contact
+        }else{
+            return null
+        }
+    }
+
+    static async editContacts(req, res){
+        const id = req.params.id
+        const event = await Event.findByPk(id, {
+            include: Contact
+        })
+        if(event){
+            const events = JSON.parse(JSON.stringify(event))
+            res.render('events_contacts/editContacts', {events: events})
+        }else{
+            res.render('events_contacts/editContacts')
+        }
+
+    }
+
+    static async removeContact(req, res){
+        const Event_eventId = req.body.idEvent
+        const contacts = req.body.contacts
+
+        if(Array.isArray(contacts)){
+            contacts.forEach(Contact_contactId =>{
+                Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: Contact_contactId}})
+            })
+        }else{
+            Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: contacts}})
+
+        }
+        res.redirect('/events/events')
     }
 
 
