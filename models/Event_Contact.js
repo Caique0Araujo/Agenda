@@ -3,7 +3,22 @@ const db = require('../db/conn')
 const Event = require('./Event')
 const Contact = require('./Contact')
 
-const Event_Contact = db.define('Event_Contact', {}, { timestamps: false })
+const Event_Contact = db.define('Event_Contact', {
+    Event_eventId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Event, 
+          key: 'id'
+        }
+      },
+      Contact_contactId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Contact, 
+          key: 'id'
+        }
+      }
+}, { timestamps: false })
 
 Event.belongsToMany(
     Contact, 
@@ -21,8 +36,5 @@ Contact.belongsToMany(
     }
 )
 
-await Contact.sync()
-await Event.sync()
-await Event_Contact.sync()
 
 module.exports = Event_Contact

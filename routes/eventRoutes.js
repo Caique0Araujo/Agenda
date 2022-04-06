@@ -16,7 +16,5 @@ router.get('/event/:id', checkAuth, EventController.showEvent)
 
 router.post('/delete', checkAuth, EventController.deleteEvent)
 
-router.get('/event/addContact/:id', checkAuth, EventController.addContacts)
-router.post('/event/addContact', checkAuth, EventController.addContactPost)
 
 module.exports = router

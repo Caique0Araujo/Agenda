@@ -1,7 +1,10 @@
 const Event = require('../models/Event')
+const Event_Contact = require('../models/Event_Contact')
 const Contact = require('../models/Contact')
 const {DateTime} = require('luxon')
 const DateService = require('../services/DateService')
+
+const EventContactController = require('../controllers/EventContactController')
 
 
 module.exports = class EventController{
@@ -45,14 +48,19 @@ module.exports = class EventController{
 
     static async showEvents(req, res){
 
-        const events = await Event.findAll({raw: true})    
-        
+        const events = await EventContactController.showContacts()
+
         events.forEach(event => {
             event.eventDate = DateService.formatDate(event.eventDate)
+            console.log(event)
         });
-        
+
+
+
         res.render('events/events', {events: events})
     }
+
+
     static async showEvent(req, res){
         const id = req.params.id
         const event = await Event.findOne({raw: true, where: {id: id}})
@@ -72,24 +80,5 @@ module.exports = class EventController{
 
         res.redirect('events/')
     }
-
-
-    static async addContacts(req, res){
-        const id = req.params.id
-        const event = await Event.findOne({raw: true, where: {id: id}})
-        const contacts = await Contact.findAll({raw: true})
-
-        res.render('events/addContacts', {event, contacts})
-    }
-
-    static async addContactPost(req, res){
-
-        const contacts = [1, 2]
-        const event = req.body.event
-        
-        contacts.forEach(id => {
-            let contact = Contact.findOne({raw: true, where: {id: id}})
-        })
-
-    }
+    
 }

@@ -2,7 +2,7 @@
     <div class="container">
         <h1>{{event.name}}</h1>
         <div class="contacts">
-            <form action="/events/event/addContact" method="post">
+            <form action="/events_contacts/addContact" method="post">
                 <input type="hidden" name="event" id="event" value="{{event.id}}">
                 {{#each contacts}}
                     <div class="checkbox-container">
