@@ -52,7 +52,6 @@ module.exports = class EventController{
 
         events.forEach(event => {
             event.eventDate = DateService.formatDate(event.eventDate)
-            console.log(event)
         });
 
 

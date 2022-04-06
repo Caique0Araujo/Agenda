@@ -9,7 +9,6 @@
 
 
 
-
 #nav-container{
     width: 100vw;
     display: flex;
@@ -70,8 +69,8 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(181,181,181);
-    background: linear-gradient(0deg, rgba(181,181,181,1) 0%, rgba(213,213,213,1) 25%, rgba(245,245,245,1) 100%);
+    background: rgb(205,205,205);
+    background: linear-gradient(180deg, rgba(205,205,205,1) 0%, rgba(202,202,202,1) 17%, rgba(219,219,219,1) 49%, rgba(255,255,255,1) 91%);
 }
 
 .container{
@@ -82,7 +81,7 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     margin-top: 20px;
 }
 
@@ -125,9 +124,11 @@ input {
 }
 
 .textfields{
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
     color: black;
+    border: 1px solid transparent;
     border-bottom: 1px solid black;
+
     padding: 5px;
 }
 
@@ -191,19 +192,8 @@ input {
     justify-content: flex-end;
 }
 
-.main-container{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    margin: 20px 0;
-}
 
 .sub-container{
-    background: rgb(181,181,181);
-    background: linear-gradient(0deg, rgba(181,181,181,1) 0%, rgba(213,213,213,1) 25%, rgba(245,245,245,1) 100%);
     width: 70vw;
     height: 800px;
     padding: 20px;
