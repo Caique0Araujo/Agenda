@@ -12,6 +12,7 @@ const groupRoutes = require('./routes/groupRoutes')
 const eventRoutes = require('./routes/eventRoutes')
 const userRoutes = require('./routes/userRoutes')
 const eventContactsRoutes = require('./routes/eventContactRoutes')
+const groupContactsRoutes = require('./routes/groupContactRoutes')
 
 const conn = require('./db/conn')
 
@@ -59,6 +60,7 @@ app.use('/groups', groupRoutes)
 app.use('/events', eventRoutes)
 app.use('/users', userRoutes)
 app.use('/events_contacts',eventContactsRoutes)
+app.use('/groups_contacts',groupContactsRoutes)
 
 app.use((req, res, next)=>{
 

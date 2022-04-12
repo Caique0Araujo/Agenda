@@ -1,9 +1,25 @@
+   <script>
+       window.onload = function() {
+        if(! window. location. hash) {
+            window. location = window. location + '#loaded';
+            window. location. reload();
+        }
+       }
+   </script>
     <div class="sub-container">
         <h1>Grupos</h1>
         <div class="models-container">
             {{#each groups}}
                 <div>
-                    <p><span class="bold"><a href="/groups/group/{{this.id}}" id="name-link">{{this.name}}</a></span> - Descrição: {{this.description}}</p>
+                    <p><span class="bold"><a href="/groups/group/{{this.id}}" id="name-link">{{this.name}}</a></span></p>
+                    <p>Descrição: {{this.description}}</p>
+                    <p>Contatos: 
+                        {{#each this.Contacts}}
+                            <span>
+                                {{this.name}},
+                            </span>
+                        {{/each}}
+                    </p>
                 </div>
             {{/each}}
         </div>

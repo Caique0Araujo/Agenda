@@ -7,10 +7,13 @@
     margin: 0;
 }
 
-body{
-    background: rgb(205,205,205);
-    background: linear-gradient(180deg, rgba(205,205,205,1) 0%, rgba(202,202,202,1) 17%, rgba(219,219,219,1) 49%, rgba(255,255,255,1) 91%);
 
+body {
+    background-image: url(../img/background.jpg);
+    background-attachment: fixed;
+    background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 
@@ -31,13 +34,15 @@ body{
 }
 
 #menu{
-    background-color: black;
+    background-color: #13293d;
     border-radius: 0;
     margin-bottom: 0;
     display: flex;
     justify-content: space-between;
     width: 100vw;
 }
+
+
 
 a {
     text-decoration: none;
@@ -57,6 +62,7 @@ a:hover{
 
 h1{
     font-weight: 600;
+    color: #091420;
     text-align: center;
 }
 
@@ -89,10 +95,15 @@ h1{
     background-color: rgb(255, 255, 255);
 }
 
+   .container {
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(7px);
+   }
+
 .container .container-title {
     margin-top: 0x;
     margin-bottom: 15px;
-    color: gray;
+    color: #091420;
 }
 
 .container form{
@@ -144,30 +155,30 @@ input {
 
 #bttn-contact{
     text-decoration: none;
-    background-color: rgb(0, 0, 0);
+    background-color: #091420;
     color: rgb(255, 255, 255);
     border: 1px solid transparent;
     padding: 5px;
-    margin-left: 10px;
+    
 }
 
 #bttn-contact:hover{
     background-color: white;
-    color: black;
-    border: 1px solid black;
+    color: #091420;
+    border: 1px solid #091420;
 }
 
 .bttn-submit{
-    background-color: black;
-    color: aliceblue;
+    background-color: #091420;
+    color: white;
     border: 1px solid transparent;
     padding: 5px;
 }
 
 .bttn-submit:hover{
     background-color: white;
-    color: black;
-    border: 1px solid black;
+    color: #091420;
+    border: 1px solid #091420;
 }
 
 
@@ -182,8 +193,19 @@ input {
     margin-top: 40px;
     width: 100%;
     padding: 10px;
-    align-items: center;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bttn-links #bttn-contact{
+    margin-right: 10px;
+}
+
+.bttn-links form{
+    padding: 0;
+    margin: 0;
 }
 
 .bold {
@@ -191,20 +213,21 @@ input {
 }
 
 
-#homelink .users{
-    background-color: blue;
-    justify-content: flex-end;
-}
-
 
 .sub-container{
     width: 70vw;
     height: 800px;
     padding: 20px;
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
 }
 
 #dropdown-bttn{
     color: #9d9d9d;
+    background-color: #13293d;
+    
+    
 }
 
 #dropdown-bttn:hover{
@@ -282,3 +305,4 @@ p{
     font-weight:600;
     text-decoration: underline;
 }
+

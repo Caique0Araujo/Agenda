@@ -1,4 +1,5 @@
 const Group = require('../models/Group')
+const GroupContactController = require('../controllers/GroupContactController')
 
 module.exports = class GroupController{
     static createGroup(req, res){
@@ -38,13 +39,14 @@ module.exports = class GroupController{
 
 
     static async showGroups(req, res){
-        const groups = await Group.findAll({raw: true})
+        const groups = await GroupContactController.showGroupsContacts()
 
         res.render('groups/groups', {groups: groups})
     }
+
     static async showGroup(req, res){
         const id = req.params.id
-        const group = await Group.findOne({raw: true, where: {id: id}})
+        const group = await GroupContactController.showGroupContacts(id)
 
         res.render('groups/group', {group})
     }

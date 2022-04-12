@@ -1,8 +1,23 @@
+   <script>
+       window.onload = function() {
+        if(! window. location. hash) {
+            window. location = window. location + '#loaded';
+            window. location. reload();
+        }
+       }
+   </script>    
     <div class="container">
         <h1>{{group.name}}</h1>
         <div class="models-container">
             <div>
                 <p>Descrição: {{group.description}}</p>
+                <p>Contatos: 
+                    {{#each group.Contacts}}
+                            <span>
+                                {{this.name}},
+                            </span>
+                    {{/each}}
+                </p>
             </div>
         </div>
         <div class="bttn-links">
@@ -11,5 +26,7 @@
                 <input type="hidden" name="id" value="{{group.id}}">
                 <input type="submit" value="Deletar grupo" id="bttn-contact">
             </form>
+            <a href="/groups_contacts/addContact/{{group.id}}" id="bttn-contact">Adicionar contatos</a>
+            <a href="/groups_contacts/editContacts/{{group.id}}" id="bttn-contact">Editar contatos</a>
         </div>
     </div>

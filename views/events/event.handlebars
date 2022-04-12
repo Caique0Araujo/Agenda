@@ -1,3 +1,11 @@
+   <script>
+       window.onload = function() {
+        if(! window. location. hash) {
+            window. location = window. location + '#loaded';
+            window. location. reload();
+        }
+       }
+   </script>
     <div class="container">
         <h1>{{event.name}}</h1>
         <div class="models-container">
@@ -22,7 +30,6 @@
             </form>
             <a href="/events_contacts/addContact/{{event.id}}" id="bttn-contact">Adicionar contatos</a>
             <a href="/events_contacts/editContacts/{{event.id}}" id="bttn-contact">Editar contatos</a>
-
         </div>
 
     </div>

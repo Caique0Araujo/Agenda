@@ -1,6 +1,8 @@
 const Event = require('../models/Event')
 const Contact = require('../models/Contact')
 const Event_Contact = require('../models/Event_Contact')
+const ValidateService = require('../services/ValidateService')
+
 
 module.exports = class EventContactController{
     
@@ -8,6 +10,7 @@ module.exports = class EventContactController{
         const id = req.params.id
         const event = await Event.findOne({raw: true, where: {id: id}})
         const contacts = await Contact.findAll({raw: true})
+
 
         res.render('events_contacts/addContact', {event, contacts})
     }
@@ -17,8 +20,16 @@ module.exports = class EventContactController{
         const contacts = req.body.contact;
         const Event_eventId = req.body.event     
         
+        
         Array.prototype.forEach.call(contacts, Contact_contactId => {
-            Event_Contact.create({Event_eventId, Contact_contactId})
+
+            ValidateService.validateObject({Event_eventId, Contact_contactId}, "eventContact").then(result => {
+                if(result){
+                    return
+                }else{
+                    Event_Contact.create({Event_eventId, Contact_contactId})
+                }
+            })
         })
 
         res.redirect('/events/events')

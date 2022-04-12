@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const db = require('../db/conn')
+const Contact = require('./Contact')
 
 const Group = db.define('Group', {
     name: {
@@ -13,6 +14,9 @@ const Group = db.define('Group', {
     },
     
 })
+
+
+
 
 
 module.exports = Group

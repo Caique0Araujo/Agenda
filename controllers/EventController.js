@@ -61,8 +61,6 @@ module.exports = class EventController{
         const id = req.params.id
         const event = await EventContactController.showEventContacts(id)
         event.eventDate = DateService.formatDate(event.eventDate, false) 
-        console.log(event)
-
         
         res.render('events/event', {event: event})
     }

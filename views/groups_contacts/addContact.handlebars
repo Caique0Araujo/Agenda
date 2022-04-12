@@ -1,0 +1,17 @@
+    <div class="container">
+        <h1>{{group.name}}</h1>
+        <div class="contacts">
+            <form action="/groups_contacts/addContact" method="post">
+                <input type="hidden" name="group" id="group" value="{{group.id}}">
+                {{#each contacts}}
+                    <div class="checkbox-container">
+                        <span class="checkbox-l">
+                            <input type="checkbox" name="contact" id="contact" value="{{this.id}}">
+                            <label for="contact">{{this.name}}</label>
+                        </span>
+                    </div>
+                {{/each}}
+                <input type="submit" value="Adicionar" id="bttn-contact">
+            </form>
+        </div>
+    </div>
