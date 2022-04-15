@@ -1,6 +1,5 @@
 const {DataTypes, sequelize} = require('sequelize')
 const db = require('../db/conn')
-const Contact = require('../models/Contact')
 
 const Event = db.define('Event', {
     name: {
@@ -20,23 +19,6 @@ const Event = db.define('Event', {
 
     },
 })
-
-
-Event.belongsToMany(
-    Contact, 
-    {
-        through: 'Event_Contact',
-        foreignKey: 'Event_eventId'
-    }
-)
-
-Contact.belongsToMany(
-    Event,
-    {
-        through: 'Event_Contact',
-        foreignKey: 'Contact_contactId'
-    }
-)
 
 
 
