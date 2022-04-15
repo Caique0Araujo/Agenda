@@ -1,17 +1,44 @@
 const Contact = require('../models/Contact')
-
+const ValidateService = require('../services/ValidateService')
 module.exports = class ContactController{
+
+    // ADD
+
     static createContact(req, res){
         res.render('contacts/addContact')
     }
     static async createContactSave(req, res){
-        const name = req.body.nome
-        const fone = req.body.fone
-        const email = req.body.email
 
-        await Contact.create({name, email, fone})
-        res.redirect('contacts/')
+        const contact = {
+            name: req.body.nome,
+            fone: req.body.fone,
+            email: req.body.email,
+            UserId: req.session.userid,
+        
+        }
+
+        if(await ValidateService.validateObject({id: contact.UserId}, "User")){
+
+        try{
+            await Contact.create(contact)
+            req.flash('message', 'Contato adicionado com sucesso')
+
+            req.session.save(()=>{
+                res.redirect('contacts/')
+            })
+        } catch (error) {
+            console.log(error)
+        }
+        }else{
+            req.flash('message', 'Erro ao adicionar contato, verifique se está logado!')
+            req.session.save(()=>{
+                res.redirect('contacts/')
+            })
+            return
+        }
     }
+
+    // EDIT
 
 
     static async editContact(req, res){
@@ -20,46 +47,88 @@ module.exports = class ContactController{
 
         res.render('contacts/editContact', {contact})
     }
+
     static async editContactPost(req, res){
+
         const id = req.body.id
-        const name = req.body.name
-        const fone = req.body.fone
-        const email = req.body.email
+        const UserId = req.session.userid
 
         const contact = {
-            id,
-            name,
-            fone,
-            email
+            name: req.body.nome,
+            fone: req.body.fone,
+            email: req.body.email,
         }
 
-        await Contact.update(contact, {where: {id: id}})
+        if(await ValidateService.validateObject({id: contact.UserId}, "User")){
 
-        res.redirect('contacts/')
+            try{
+                await Contact.update(contact, {where: {id: id}})
+                req.flash('message', 'Contato editado com sucesso!')
+
+
+                req.session.save(()=>{
+                    res.redirect('contacts/')
+                })
+
+            }catch(error){
+                console.log(error)
+            }
+        }else{
+            req.flash('message', 'Erro ao editar contato, verifique se está logado!')
+            req.session.save(()=>{
+                res.redirect('contacts/')
+            })
+            return
+        }
+       
     }
+
+
+    // SHOW
 
 
     static async showContacts(req, res){
-        const contacts = await Contact.findAll({raw: true})
 
-        res.render('contacts/contacts', {contacts: contacts})
+        const UserId = req.session.userid
+
+        try {
+            const contacts = await Contact.findAll({raw: true, where: {UserId: UserId}})
+            res.render('contacts/contacts', {contacts: contacts})
+
+        } catch (error) {
+            console.log(error)
+        }
     }
     static async showContact(req, res){
         const id = req.params.id
-        const contact = await Contact.findOne({raw: true, where: {id: id}})
-
-        res.render('contacts/contact', {contact})
+        
+        try {
+            const contact = await Contact.findOne({raw: true, where: {id: id}})
+            res.render('contacts/contact', {contact})
+        } catch (error) {
+            console.log(error)
+        }
     }
+
+    // DELETE
 
 
     static async deleteContact(req, res){
         const id = req.body.id
 
-        await Contact.destroy({
-            where: {id: id}
-        })
+        try {
+            await Contact.destroy({
+                where: {id: id}
+            })
 
-        res.redirect('contacts/')
+            req.flash('message', 'Contato excluido com sucesso')
+    
+            req.session.save(()=>{
+                res.redirect('contacts/')
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 }

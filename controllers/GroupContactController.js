@@ -37,10 +37,13 @@ module.exports = class GroupContactController{
 
     }
 
-    static async showGroupsContacts(){
+    static async showGroupsContacts(id){
 
         const groups = await Group.findAll({
-            include: Contact
+            include: Contact,
+            where: {
+                UserId: id
+            }
         })
 
         if(groups){

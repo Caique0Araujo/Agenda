@@ -7,6 +7,7 @@ const ValidateService = require('../services/ValidateService')
 module.exports = class EventContactController{
     
     static async addContact(req, res) {
+        
         const id = req.params.id
         const event = await Event.findOne({raw: true, where: {id: id}})
         const contacts = await Contact.findAll({raw: true})
@@ -36,10 +37,13 @@ module.exports = class EventContactController{
 
     }
 
-    static async showEventsContacts(){
+    static async showEventsContacts(id){
 
         const events = await Event.findAll({
-            include: Contact
+            include: Contact,
+            where: {
+                UserId: id
+            }
         })
 
         if(events){
