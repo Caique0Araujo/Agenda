@@ -11,9 +11,9 @@
 body {
     background-image: url(../img/background.jpg);
     background-attachment: fixed;
-    background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
 }
 
 
@@ -75,12 +75,12 @@ h1{
 
 
 .container-father{
+    margin-top: 7vh;
     padding: 10px;
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     }
 
@@ -88,6 +88,7 @@ h1{
 
     max-width: fit-content;
     box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.23);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -96,7 +97,7 @@ h1{
 }
 
    .container {
-    background-color: rgba(237, 237, 237, 0.15);  
+    background-color: rgba(237, 237, 237, 0.40);  
     backdrop-filter: blur(7px);
    }
 
@@ -148,13 +149,18 @@ input {
 }
 
 .textfields:hover, .textfields:focus{
-    background-color: white;
+    background-color: transparent;
     color: black;
-    border: 1px solid black;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
 
 #bttn-contact{
     text-decoration: none;
+    text-align: center;
     background-color: #091420;
     color: rgb(255, 255, 255);
     border: 1px solid transparent;
@@ -190,12 +196,10 @@ input {
 }
 
 .bttn-links{
-    margin-top: 40px;
-    width: 100%;
+    width: auto;
     padding: 10px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -216,9 +220,9 @@ input {
 
 .sub-container{
     width: 70vw;
-    height: 800px;
+    margin-top: 0;
     padding: 20px;
-    background-color: rgba(255, 255, 255, .15);  
+    background-color: rgba(255, 255, 255, .60);  
     backdrop-filter: blur(20px);
     border-radius: 10px;
 }
@@ -290,6 +294,10 @@ input {
     justify-content: center;
 }
 
+.message-container + .container-father{
+    margin-top: 0px;
+}
+
 p{
     padding: 0.5em;
 }
@@ -300,9 +308,42 @@ p{
     align-items: center;
 }
 
+
+
 .redirect-link{
     margin-left: 0.3em;
     font-weight:600;
     text-decoration: underline;
 }
 
+.container-lists{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-lists .bttn-links{
+    justify-content: flex-start;
+    padding: 10px 0px;
+}
+
+
+.bttn-add{
+    padding: 5px;
+    background-color: rgba(237, 237, 237, 0.15);  
+    box-shadow: 0px 1.5px 5px 0px rgba(0,0,0,0.23);
+    color: #091420;
+    backdrop-filter: blur(7px);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: medium;
+}
+
+
+.bttn-add:visited{
+    color: #091420;
+}
+
+.bttn-add:visited:hover{
+    color: #1c3046;
+}
