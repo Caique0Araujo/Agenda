@@ -9,8 +9,9 @@ module.exports = class EventContactController{
     static async addContact(req, res) {
         
         const id = req.params.id
-        const event = await Event.findOne({raw: true, where: {id: id}})
-        const contacts = await Contact.findAll({raw: true})
+        const userid = req.session.userid
+        const event = await Event.findOne({raw: true, where: {id: id, UserId: userid}})
+        const contacts = await Contact.findAll({raw: true, where: {UserId: userid}})
 
 
         res.render('events_contacts/addContact', {event, contacts})
@@ -19,7 +20,8 @@ module.exports = class EventContactController{
     static async addContactSave(req, res){
 
         const contacts = req.body.contact;
-        const Event_eventId = req.body.event     
+        const Event_eventId = req.body.event   
+        const UserId = req.session.userid  
         
         
         Array.prototype.forEach.call(contacts, Contact_contactId => {
@@ -28,12 +30,15 @@ module.exports = class EventContactController{
                 if(result){
                     return
                 }else{
-                    Event_Contact.create({Event_eventId, Contact_contactId})
+                    Event_Contact.create({Event_eventId, Contact_contactId, UserId})
                 }
             })
         })
 
-        res.redirect('/events/events')
+        req.session.save(()=>{
+            res.redirect('/events/events')
+        })
+        
 
     }
 
@@ -94,7 +99,9 @@ module.exports = class EventContactController{
             Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: contacts}})
 
         }
-        res.redirect('/events/events')
+        req.session.save(()=>{
+            res.redirect('/events/events')
+        })
     }
 
 

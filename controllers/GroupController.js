@@ -10,6 +10,8 @@ module.exports = class GroupController{
     }
     static async createGroupSave(req, res){
 
+        console.log(req.body)
+
         const group = {
             name: req.body.name,
             description: req.body.description,
@@ -19,7 +21,7 @@ module.exports = class GroupController{
         if(await ValidateService.validateObject({id: group.UserId}, "User")){
 
             try {
-                await Group.create()
+                await Group.create(group)
                 req.flash('message', 'Grupo adicionado com sucesso!')
                 req.session.save(()=>{
                     res.redirect('groups/')

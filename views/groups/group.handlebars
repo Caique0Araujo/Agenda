@@ -11,13 +11,15 @@
         <div class="models-container">
             <div>
                 <p>Descrição: {{group.description}}</p>
+                {{#if this.Contacts}}
                 <p>Contatos: 
                     {{#each group.Contacts}}
-                            <span>
-                                {{this.name}},
+                            <span style="margin-right: auto;">
+                                {{this.name}}
                             </span>
                     {{/each}}
                 </p>
+                {{/if}}
             </div>
         </div>
         <div class="bttn-links">
@@ -27,6 +29,6 @@
                 <input type="submit" value="Deletar grupo" id="bttn-contact">
             </form>
             <a href="/groups_contacts/addContact/{{group.id}}" id="bttn-contact">Adicionar contatos</a>
-            <a href="/groups_contacts/editContacts/{{group.id}}" id="bttn-contact">Editar contatos</a>
+            <a href="/groups_contacts/editContacts/{{group.id}}" id="bttn-contact">Remover contatos</a>
         </div>
     </div>

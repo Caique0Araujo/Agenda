@@ -6,13 +6,15 @@
                     <p><span class="bold"><a href="/events/event/{{this.id}}" id="name-link">{{this.name}}</a></span></p>
                     <p>Descrição: {{this.description}}</p>
                     <p>Data: {{this.eventDate}}</p>
-                    <p>Contatos: 
-                        {{#each this.Contacts}}
-                            <span>
-                                {{this.name}},
-                            </span>
-                        {{/each}}
-                    </p>
+                    {{#if this.Contacts}}
+                        <p>Contatos: 
+                            {{#each this.Contacts}}
+                                <span style="margin-right: auto;">
+                                    {{this.name}}
+                                </span>
+                            {{/each}}
+                        </p>
+                    {{/if}}
                 </div>
             {{/each}}
         </div>

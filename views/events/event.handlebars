@@ -12,14 +12,15 @@
             <div>
                 <p>Descrição: {{event.description}}</p>
                 <p>Data: {{event.eventDate}}</p>
+                {{#if this.Contacts}}
                 <p>Contatos: 
                     {{#each event.Contacts}}
-                            <span>
+                            <span style="margin-right: auto;">
                                 {{this.name}},
                             </span>
                     {{/each}}
                 </p>
-
+                {{/if}}
             </div>
         </div>
         <div class="bttn-links">
@@ -29,7 +30,7 @@
                 <input type="submit" value="Deletar evento" id="bttn-contact">
             </form>
             <a href="/events_contacts/addContact/{{event.id}}" id="bttn-contact">Adicionar contatos</a>
-            <a href="/events_contacts/editContacts/{{event.id}}" id="bttn-contact">Editar contatos</a>
+            <a href="/events_contacts/editContacts/{{event.id}}" id="bttn-contact">Remover contatos</a>
         </div>
 
     </div>

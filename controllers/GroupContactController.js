@@ -7,8 +7,9 @@ module.exports = class GroupContactController{
     
     static async addContact(req, res) {
         const id = req.params.id
-        const group = await Group.findOne({raw: true, where: {id: id}})
-        const contacts = await Contact.findAll({raw: true})
+        const userid = req.session.userid
+        const group = await Group.findOne({raw: true, where: {id: id, UserId: userid}})
+        const contacts = await Contact.findAll({raw: true, where: {UserId: userid}})
 
         res.render('Groups_contacts/addContact', {group, contacts})
     }
@@ -17,6 +18,7 @@ module.exports = class GroupContactController{
 
         const contacts = req.body.contact;
         const Group_groupId = req.body.group
+        const UserId = req.session.userid  
 
         
         Array.prototype.forEach.call(contacts, Contact_contactId => {
@@ -25,7 +27,7 @@ module.exports = class GroupContactController{
             if(result){
                 return
             }else{
-                Group_Contact.create({Group_groupId, Contact_contactId})
+                Group_Contact.create({Group_groupId, Contact_contactId, UserId})
             }
         })
 
@@ -33,7 +35,9 @@ module.exports = class GroupContactController{
             
         })
 
-        res.redirect('/groups/groups')
+        req.session.save(()=>{
+            res.redirect('/groups/groups')
+        })
 
     }
 
@@ -85,6 +89,7 @@ module.exports = class GroupContactController{
     static async removeContact(req, res){
         const Group_groupId = req.body.idGroup
         const contacts = req.body.contacts
+        
 
         if(Array.isArray(contacts)){
             contacts.forEach(Contact_contactId =>{
@@ -94,7 +99,9 @@ module.exports = class GroupContactController{
             Group_Contact.destroy({where: {Group_groupId: Group_groupId, Contact_contactId: contacts}})
 
         }
-        res.redirect('/groups/groups')
+        req.session.save(()=>{
+            res.redirect('/groups/groups')
+        })
     }
 
 
