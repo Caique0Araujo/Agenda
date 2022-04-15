@@ -37,9 +37,19 @@ module.exports = class ValidateService {
           return false;
         }
       }
+      case "User": {
+        const User = require("../models/User")
+        const user = await User.findOne({raw: true, where:{id: object.id}})
+        if(user){
+          return true;
+        }else{
+          return false;
+        }
+      }
     }
 
 
 
   }
+
 };
