@@ -5,8 +5,6 @@ const FileStore = require('session-file-store')(session)
 const flash = require('express-flash');
 const checkAuth = require('./services/AuthenticateService').checkAuth
 
-
-
 const contactRoutes = require('./routes/contactRoutes')
 const groupRoutes = require('./routes/groupRoutes')
 const eventRoutes = require('./routes/eventRoutes')
@@ -17,8 +15,6 @@ const groupContactsRoutes = require('./routes/groupContactRoutes')
 const conn = require('./db/conn')
 
 const Contact = require('./models/Contact')
-
-
 
 const app = express()
 
@@ -54,6 +50,15 @@ app.use(
     })
 )
 
+app.use((req, res, next)=>{
+
+    if(req.session.userid){
+        res.locals.session = req.session
+    }
+    next()
+
+})
+
 
 app.use('/contacts', contactRoutes)
 app.use('/groups', groupRoutes)
@@ -62,20 +67,18 @@ app.use('/users', userRoutes)
 app.use('/events_contacts',eventContactsRoutes)
 app.use('/groups_contacts',groupContactsRoutes)
 
-app.use((req, res, next)=>{
-
-    if(req.session.userid){
-        res.locals.session = req.session
-    }
-
-    next()
-
-})
 
 app.get('/',  checkAuth, async (req, res)=>{
-    const contacts = await Contact.findAll({raw: true})
+    const userid = req.session.userid
 
-    res.render('home', {contacts: contacts})
+    try {
+        const contacts = await Contact.findAll({raw: true, where: {UserId: userid}})
+
+        res.render('home', {contacts: contacts})
+    } catch (error) {
+        console.log(error)
+    }
+    
 })
 
 
