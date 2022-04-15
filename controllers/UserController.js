@@ -70,4 +70,12 @@ module.exports = class UserController {
     req.session.destroy()
     res.redirect('/users/login')
   }
+
+  static editPassword(req, res){
+    res.render('users/editPassword')
+  }
+
+  static config(req, res){
+    res.render('users/config')
+  }
 };

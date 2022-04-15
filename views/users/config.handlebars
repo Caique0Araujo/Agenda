@@ -1,0 +1,24 @@
+    <div class="container">
+        <h1 class= "container-title" >Editar perfil</h1>
+        <form action="/users/register" method="post" class="form-add">
+            <div class="container-fields">
+                <label for="name">Nome*: </label>
+                <input class="textfields" type="name" id="name" name="name" required value="{{user.name}}">
+            </div>
+            <div class="container-fields">
+                <label for="fone">Telefone: </label>
+                <input class="textfields" type="number" id="fone" name="fone" required value="{{user.fone}}">
+            </div>
+            <div class="container-fields">
+                <label for="email">E-mail*: </label>
+                <input class="textfields" type="email" id="email" name="email" value="{{user.email}}">
+            </div>
+            <div class="container-bttns">
+                <a href="/users/editPassword" id="bttn-contact">Trocar senha</a>
+            </div>
+
+            <div class="container-bttns">
+                <input class="bttn-submit" type="submit" value="Confirmar">
+            </div>
+        </form>      
+    </div>

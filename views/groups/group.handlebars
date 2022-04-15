@@ -1,17 +1,9 @@
-   <script>
-       window.onload = function() {
-        if(! window. location. hash) {
-            window. location = window. location + '#loaded';
-            window. location. reload();
-        }
-       }
-   </script>    
-    <div class="container">
+     <div class="sub-container">
         <h1>{{group.name}}</h1>
         <div class="models-container">
             <div>
                 <p>Descrição: {{group.description}}</p>
-                {{#if this.Contacts}}
+                {{#if group.Contacts}}
                 <p>Contatos: 
                     {{#each group.Contacts}}
                             <span style="margin-right: auto;">
