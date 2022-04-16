@@ -2,12 +2,12 @@
         <h1>{{group.name}}</h1>
         <div class="models-container">
             <div>
-                <p class="data-p">Descrição: {{group.description}}</p>
+                <p class="data-p"><span style="font-weight: 600;">Descrição:</span> {{group.description}}</p>
                 {{#if group.Contacts}}
-                <p class="data-p">Contatos: 
+                <p class="data-p"><span style="font-weight: 600;">Contatos:</span> 
                     {{#each group.Contacts}}
                             <span style="margin-right: auto;">
-                                {{this.name}}
+                                {{this.name}} <span style="color: blue;">|</span>
                             </span>
                     {{/each}}
                 </p>

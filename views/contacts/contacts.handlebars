@@ -9,8 +9,8 @@
             {{#each contacts}}
                 <div>
                     <p><span class="bold"><a href="/contacts/contact/{{this.id}}" id="name-link">{{this.name}}</a></span></p>
-                    <p class="data-p">Telefone: {{this.fone}}</p> 
-                    <p class="data-p">Email: {{this.email}}</p>
+                    <p class="data-p"><span style="font-weight: 600;">Telefone:</span> {{this.fone}}</p> 
+                    <p class="data-p"><span style="font-weight: 600;">Email:</span {{this.email}}</p>
                     
                 </div>
             {{/each}}
