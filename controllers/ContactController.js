@@ -59,7 +59,7 @@ module.exports = class ContactController{
             email: req.body.email,
         }
 
-        if(await ValidateService.validateObject({id: contact.UserId}, "User")){
+        if(await ValidateService.validateObject({id: UserId}, "User")){
 
             try{
                 await Contact.update(contact, {where: {id: id}})
