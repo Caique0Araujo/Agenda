@@ -2,14 +2,14 @@
         <h1>{{event.name}}</h1>
         <div class="models-container">
             <div>
-                <p>Descrição: {{event.description}}</p>
-                <p>Data: {{event.eventDate}}</p>
+                <p class="data-p">Descrição: {{event.description}}</p>
+                <p class="data-p">Data: {{event.eventDate}}</p>
                 {{#if event.Contacts}}
-                <p>Contatos: 
+                <p class="data-p">Contatos: 
                     {{#each event.Contacts}}
                             <span style="margin-right: auto;">
                                 {{this.name}}
-                            </span>
+                            </span> |
                     {{/each}}
                 </p>
                 {{/if}}

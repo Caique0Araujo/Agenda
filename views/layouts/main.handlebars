@@ -13,47 +13,52 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse" id="menu">
-        <div class="container-fluid" id="nav-container">
-            <div class="navbar-header" id="nav-header">
-                <a class="navbar-brand" href="/" id="main-link">
-                    <span class="glyphicon glyphicon-earphone" style=" margin-right: 0.4em;"></span>
-                    Agenda
-                </a>
-            </div>
-            <ul class="nav navbar-nav"s id="home-link">
-            {{#if session.userid}}
-                <li><a href="/contacts/contacts">Contatos</a></li>
-                <li><a href="/groups/groups">Grupos</a></li>
-                <li><a href="/events/events">Eventos</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right" id="nav-right">
-                <li>
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span>
+    <div class="container-father">
+        <nav class="navbar navbar-inverse" id="menu">
+            <div class="container-fluid" id="nav-container">
+                <div class="navbar-header" id="nav-header">
+                    <a class="navbar-brand" href="/" id="main-link">
+                        <span class="glyphicon glyphicon-earphone" style=" margin-right: 0.4em;"></span>
+                        Agenda
                     </a>
-                
-                    <ul class="dropdown-menu" style="padding: 10px;">
-                        <li><a href="/users/config"><span class="glyphicon glyphicon-cog" style="margin-bottom: 10px;"></span>
-                                Configurações</a></li>
-                        <li><a href="/users/logout"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
-                    </ul>
-                </li>
-                {{else}}
-                <li><a href="/users/login"></span> Login</a></li>
-                <li><a href="/users/register"></span> Register</a></li>
-                {{/if}}
-            </ul>
-        </div>
-    </nav>
+                </div>
+                <ul class="nav navbar-nav" s id="home-link">
+                    {{#if session.userid}}
+                    <li><a href="/contacts/contacts">Contatos</a></li>
+                    <li><a href="/groups/groups">Grupos</a></li>
+                    <li><a href="/events/events">Eventos</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="nav-right">
+
+                    <li class="config-bttn">
+
+                        <a href="" class="dropdown-toggle" id="nav-bttn" data-toggle="dropdown">
+                            <p>{{session.name}}</p>
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" style="padding: 10px;">
+                            <li><a href="/users/config"><span class="glyphicon glyphicon-cog"
+                                        style="margin-bottom: 10px;"></span>
+                                    Configurações</a></li>
+                            <li><a href="/users/logout"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+                        </ul>
+                    </li>
+                    {{else}}
+                    <li><a href="/users/login"></span> Login</a></li>
+                    <li><a href="/users/register"></span> Register</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </nav>
         {{#if messages.message}}
         <div class="message-container">
             <div class="message">
                 {{messages.message}}
             </div>
+        </div>
         {{/if}}
-    </div>
-    <div class="container-father">
+
         {{{body}}}
     </div>
     <footer>

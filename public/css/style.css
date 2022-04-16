@@ -17,6 +17,7 @@ body {
 }
 
 
+
 #nav-container{
     width: 100vw;
     display: flex;
@@ -36,7 +37,7 @@ body {
 #menu{
     background-color: #13293d;
     border-radius: 0;
-    margin-bottom: 0;
+    margin-top: 0;
     display: flex;
     justify-content: space-between;
     width: 100vw;
@@ -75,17 +76,18 @@ h1{
 
 
 .container-father{
-    padding: 10px;
+    padding: 0;
     width: 100vw;
     height: 100vh;
-    display: flex;
+    display: block;
+    overflow: auto;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     }
 
 .container{
-
+    margin-top: 30px;
+    min-width: 400px;
+    min-height: 300px;
     max-width: fit-content;
     box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.23);
     border-radius: 10px;
@@ -129,6 +131,7 @@ form .container-fields{
     margin-top: 20px;
     width: 200px;
     align-items: center;
+    border-radius: 5px;
 }
 
 .container-fields .textfields{
@@ -165,6 +168,8 @@ input:-webkit-autofill:focus {
     color: rgb(255, 255, 255);
     border: 1px solid transparent;
     padding: 5px;
+    border-radius: 5px;
+
     
 }
 
@@ -179,6 +184,8 @@ input:-webkit-autofill:focus {
     color: white;
     border: 1px solid transparent;
     padding: 5px;
+    border-radius: 5px;
+
 }
 
 .bttn-submit:hover{
@@ -219,8 +226,12 @@ input:-webkit-autofill:focus {
 
 
 .sub-container{
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 70vw;
-    margin-top: 0;
+    margin: 10% auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, .60);  
     backdrop-filter: blur(20px);
@@ -266,10 +277,10 @@ input:-webkit-autofill:focus {
     color: rgb(110, 110, 110);
 }
 
-.sub-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.sub-container h1{
+    padding: 0em 0.5em;
+    margin: 0;
+
 }
 
 .checkbox-container{
@@ -319,18 +330,20 @@ p{
 
 .container-lists{
     display: flex;
+    margin: auto;
     flex-direction: column;
+    align-items: center;
 }
 
-.container-lists .bttn-links{
-    justify-content: flex-start;
-    padding: 10px 0px;
+.sub-container .bttn-links{
+    margin-left: 0;
+    margin-right: auto;
 }
 
 
 .bttn-add{
     padding: 5px;
-    background-color: rgba(237, 237, 237, 0.15);  
+    background-color: rgba(123, 123, 123, 0.4);  
     box-shadow: 0px 1.5px 5px 0px rgba(0,0,0,0.23);
     color: #091420;
     backdrop-filter: blur(7px);
@@ -347,6 +360,8 @@ p{
 
 .bttn-add:visited:hover{
     color: #1c3046;
+    background-color: rgba(247, 247, 247, 0.4);  
+
 }
 
 footer {
@@ -366,4 +381,32 @@ footer {
     font-weight: bold;
     color: rgb(212, 212, 212);
   }
-  
+
+.config-bttn{
+    height: 100%;
+}
+
+.config-bttn #nav-bttn{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: auto 0.8em;
+
+}
+
+#nav-bttn p{
+    padding: 0;
+    margin: auto 0.8em;
+}
+
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
+    background-color: transparent;
+}
+
+.data-p{
+    font-size: medium;
+    font-weight: 500;
+}

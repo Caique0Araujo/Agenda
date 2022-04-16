@@ -1,17 +1,18 @@
     <div class="container-lists">
-        <div class="bttn-links">
+       
+    <div class="sub-container">
+         <div class="bttn-links">
             <a class="bttn-add" href="/events/add">Adicionar eventos</a>
         </div>
-    <div class="sub-container">
         <h1>Eventos</h1>
         <div class="models-container">
             {{#each events}}
                 <div>
                     <p><span class="bold"><a href="/events/event/{{this.id}}" id="name-link">{{this.name}}</a></span></p>
-                    <p>Descrição: {{this.description}}</p>
-                    <p>Data: {{this.eventDate}}</p>
+                    <p class="data-p">Descrição: {{this.description}}</p>
+                    <p class="data-p">Data: {{this.eventDate}}</p>
                     {{#if this.Contacts}}
-                        <p>Contatos: 
+                        <p class="data-p">Contatos: 
                             {{#each this.Contacts}}
                                 <span style="margin-right: auto;">
                                     {{this.name}}

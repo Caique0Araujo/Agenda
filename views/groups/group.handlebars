@@ -2,9 +2,9 @@
         <h1>{{group.name}}</h1>
         <div class="models-container">
             <div>
-                <p>Descrição: {{group.description}}</p>
+                <p class="data-p">Descrição: {{group.description}}</p>
                 {{#if group.Contacts}}
-                <p>Contatos: 
+                <p class="data-p">Contatos: 
                     {{#each group.Contacts}}
                             <span style="margin-right: auto;">
                                 {{this.name}}
