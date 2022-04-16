@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const ValidateService = require("../services/ValidateService");
 const EncryptService = require("../services/EncryptService");
+const session = require("express-session");
 
 module.exports = class UserController {
   static login(req, res) {
@@ -82,12 +83,6 @@ module.exports = class UserController {
       name: req.body.name,
       fone: req.body.fone,
       email: req.body.email
-    }
-
-    if(await ValidateService.validateEmail(user.email)){
-      req.flash("message", "Este email já está em uso!");
-      res.render('users/config')
-      return
     }
 
     try {
