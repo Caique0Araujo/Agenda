@@ -2,10 +2,10 @@ const User = require("../models/User");
 
 module.exports = class ValidateService {
   static validatePassword(password, confirmPassord) {
-    if (password != confirmPassord) {
-      return true;
-    } else {
+    if (password === confirmPassord) {
       return false;
+    } else {
+      return true;
     }
   }
   static async validateEmail(email) {

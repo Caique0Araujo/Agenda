@@ -57,7 +57,8 @@ module.exports = class UserController {
         return
     }
 
-    req.session.userid = user.id   
+    req.session.userid = user.id  
+    req.session.name = user.name 
 
     req.flash('message', 'Login efetuado com sucesso') 
         
@@ -75,7 +76,74 @@ module.exports = class UserController {
     res.render('users/editPassword')
   }
 
-  static config(req, res){
-    res.render('users/config')
+  static async editPasswordSave(req, res){
+    const id = req.session.userid
+    const user = {
+      name: req.body.name,
+      fone: req.body.fone,
+      email: req.body.email
+    }
+
+    if(await ValidateService.validateEmail(user.email)){
+      req.flash("message", "Este email já está em uso!");
+      res.render('users/config')
+      return
+    }
+
+    try {
+      await User.update(user, {where: {id: id}})
+      req.flash("message", "Informações alteradas com sucesso!");
+      req.session.save(()=>{
+        res.redirect('/users/config')
+    })
+      
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
+  static async config(req, res){
+
+    const UserId = req.session.userid
+
+    try {
+      const user = await User.findOne({where: {id: UserId}, raw: true})
+      res.render('users/config', {user})
+
+      
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
+  static async configSave(req,res){
+
+    const oldPassword = req.body.oldPassword
+    const newPassword = req.body.newPassword
+    const confirmPassord = req.body.confirmPassword
+    const id = req.session.userid
+
+    const user = await User.findOne({where: {id: id}, raw: true})
+
+    if (EncryptService.decrypt(oldPassword, user.password)){
+      req.flash('message', 'Senha incorreta! ')
+      res.render('users/editPassword')
+
+    }else{
+      if (ValidateService.validatePassword(newPassword, confirmPassord)) {
+        req.flash("message", "Senhas diferentes, tente novamente!");
+        res.render('users/editPassword')
+  
+      }else{
+        user.password = EncryptService.encrypt(newPassword)
+        await User.update(user, {where: {id: id}})
+        req.flash("message", "Senha alterada com sucesso!");
+        req.session.save(()=>{
+          res.redirect('/users/config')
+      })
+      }
+    }
   }
 };
