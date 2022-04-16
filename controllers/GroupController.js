@@ -53,7 +53,7 @@ module.exports = class GroupController{
     static async editGroupPost(req, res){
 
         const id = req.body.id
-        const UserId = req.session.id
+        const UserId = req.session.userid
 
         const group = {
             name: req.body.name,
@@ -101,9 +101,10 @@ module.exports = class GroupController{
 
     static async showGroup(req, res){
         const id = req.params.id
+        const userid = req.session.userid
 
         try {
-            const group = await GroupContactController.showGroupContacts(id)
+            const group = await GroupContactController.showGroupContacts(id, userid)
             res.render('groups/group', {group})
         } catch (error) {
             console.log(error)

@@ -15,7 +15,7 @@ const User = db.define('User', {
     fone: {
         type: DataTypes.INTEGER,
         required: false,
-        allowNull: false
+        allowNull: true
 
     },
     email: {

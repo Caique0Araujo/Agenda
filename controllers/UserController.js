@@ -34,10 +34,9 @@ module.exports = class UserController {
 
     try {
       await User.create(user);
+      req.flash("message", "Cadastro efeituado com sucesso!");
+      res.render("users/login");
 
-      req.flash("message", "Cadastro efeituado com sucesso");
-
-      res.redirect("/users/login");
     } catch (error) {
       console.log(error);
     }
@@ -61,7 +60,7 @@ module.exports = class UserController {
     req.session.userid = user.id  
     req.session.name = user.name 
 
-    req.flash('message', 'Login efetuado com sucesso') 
+    req.flash('message', 'Login efetuado com sucesso!') 
         
     req.session.save(()=>{
         res.redirect('/')
@@ -69,8 +68,9 @@ module.exports = class UserController {
 
   }
   static logout(req, res){
-    req.session.destroy()
-    res.redirect('/users/login')
+    req.session.destroy((err) => {
+      res.redirect('/users/login')
+    })
   }
 
   static editPassword(req, res){

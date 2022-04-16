@@ -5,7 +5,11 @@ const ValidateService = require('../services/ValidateService')
 
 
 module.exports = class EventContactController{
+
+
+    // ADD
     
+
     static async addContact(req, res) {
         
         const id = req.params.id
@@ -22,19 +26,24 @@ module.exports = class EventContactController{
         const contacts = req.body.contact;
         const Event_eventId = req.body.event   
         const UserId = req.session.userid  
-        
-        
-        Array.prototype.forEach.call(contacts, Contact_contactId => {
+        if(Array.isArray(contacts)){
 
-            ValidateService.validateObject({Event_eventId, Contact_contactId}, "eventContact").then(async result => {
-                if(result){
+            contacts.forEach(async function (Contact_contactId){
+
+                if(await ValidateService.validateObject({Event_eventId, Contact_contactId}, "eventContact")){
                     return
                 }else{
+                    console.log({Event_eventId, Contact_contactId, UserId})
                     await Event_Contact.create({Event_eventId, Contact_contactId, UserId})
                 }
             })
-        })
-
+        }else{
+            if(await ValidateService.validateObject({Event_eventId, Contact_contactId: contacts}, "eventContact")){
+                return
+            }else{
+                await Event_Contact.create({Event_eventId, Contact_contactId: contacts, UserId})
+            }
+        }
         req.session.save(()=>{
             res.redirect('/events/events')
         })
@@ -42,12 +51,16 @@ module.exports = class EventContactController{
 
     }
 
-    static async showEventsContacts(id){
+
+    // SHOW
+
+
+    static async showEventsContacts(userid){
 
         const events = await Event.findAll({
             include: Contact,
             where: {
-                UserId: id
+                UserId: userid
             }
         })
 
@@ -61,9 +74,13 @@ module.exports = class EventContactController{
 
     }
 
-    static async showEventContacts(id){
+    static async showEventContacts(id, userid){
+
         const event = await Event.findByPk(id, {
-            include: Contact
+            include: Contact,
+            where: {
+                UserId: userid
+            }
         })
         if(event){
             const contact = JSON.parse(JSON.stringify(event))
@@ -73,10 +90,18 @@ module.exports = class EventContactController{
         }
     }
 
+
+    // DELETE
+
+
     static async editContacts(req, res){
         const id = req.params.id
+        const userid = req.session.userid
         const event = await Event.findByPk(id, {
-            include: Contact
+            include: Contact,
+            where: {
+                UserId: userid
+            }
         })
         if(event){
             const events = JSON.parse(JSON.stringify(event))
@@ -92,11 +117,14 @@ module.exports = class EventContactController{
         const contacts = req.body.contacts
 
         if(Array.isArray(contacts)){
-            contacts.forEach(Contact_contactId =>{
-                Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: Contact_contactId}})
+            contacts.forEach(async Contact_contactId =>{
+                await Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: Contact_contactId}})
             })
+        req.flash('message', 'Eventos removidos com sucesso!')
+
         }else{
-            Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: contacts}})
+            await Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: contacts}})
+            req.flash('message', 'Evento removido com sucesso!')
 
         }
         req.session.save(()=>{

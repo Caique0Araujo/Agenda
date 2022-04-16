@@ -106,9 +106,10 @@ module.exports = class EventController{
 
     static async showEvent(req, res){
         const id = req.params.id
+        const userid = req.session.userid
         
         try {
-            const event = await EventContactController.showEventContacts(id)
+            const event = await EventContactController.showEventContacts(id,userid)
             event.eventDate = DateService.formatDate(event.eventDate, false) 
             
             res.render('events/event', {event: event})

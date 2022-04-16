@@ -4,7 +4,11 @@ const Group_Contact = require('../models/Group_Contact')
 const ValidateService = require('../services/ValidateService')
 
 module.exports = class GroupContactController{
+
+
+    // ADD
     
+
     static async addContact(req, res) {
         const id = req.params.id
         const userid = req.session.userid
@@ -20,33 +24,41 @@ module.exports = class GroupContactController{
         const Group_groupId = req.body.group
         const UserId = req.session.userid  
 
-        
-        Array.prototype.forEach.call(contacts, Contact_contactId => {
+        if(Array.isArray(contacts)){
 
-        ValidateService.validateObject({Group_groupId, Contact_contactId}, "groupContact").then(async result => {
-            if(result){
+            contacts.forEach(async function (Contact_contactId){
+
+                if(await ValidateService.validateObject({Group_groupId, Contact_contactId}, "groupContact")){
+                    return
+                }else{
+                    console.log({Group_groupId, Contact_contactId, UserId})
+                    await Group_Contact.create({Group_groupId, Contact_contactId, UserId})
+                }
+            }, Contact_contactId)
+        }else{
+            if(await ValidateService.validateObject({Group_groupId, Contact_contactId: contacts}, "groupContact")){
                 return
             }else{
-                await Group_Contact.create({Group_groupId, Contact_contactId, UserId})
+                await Group_Contact.create({Group_groupId, Contact_contactId: contacts, UserId})
             }
-        })
-
+        }
         
-            
-        })
-
         req.session.save(()=>{
             res.redirect('/groups/groups')
         })
 
     }
 
-    static async showGroupsContacts(id){
+
+    // SHOW
+
+
+    static async showGroupsContacts(userid){
 
         const groups = await Group.findAll({
             include: Contact,
             where: {
-                UserId: id
+                UserId: userid
             }
         })
 
@@ -60,9 +72,12 @@ module.exports = class GroupContactController{
 
     }
 
-    static async showGroupContacts(id){
+    static async showGroupContacts(id, userid){
         const group = await Group.findByPk(id, {
-            include: Contact
+            include: Contact,
+            where: {
+                UserId: userid
+            }
         })
         if(group){
             const contact = JSON.parse(JSON.stringify(group))
@@ -72,10 +87,18 @@ module.exports = class GroupContactController{
         }
     }
 
+
+    // DELETE
+
+
     static async editContacts(req, res){
         const id = req.params.id
+        const userid = req.session.userid
         const group = await Group.findByPk(id, {
-            include: Contact
+            include: Contact,
+            where: {
+                UserId: userid
+            }
         })
         if(group){
             const groups = JSON.parse(JSON.stringify(group))
@@ -92,13 +115,18 @@ module.exports = class GroupContactController{
         
 
         if(Array.isArray(contacts)){
-            contacts.forEach(Contact_contactId =>{
-                Group_Contact.destroy({where: {Group_groupId: Group_groupId, Contact_contactId: Contact_contactId}})
+            contacts.forEach(async Contact_contactId =>{
+                await Group_Contact.destroy({where: {Group_groupId: Group_groupId, Contact_contactId: Contact_contactId}})
+                
             })
+        req.flash('message', 'Contatos removidos com sucesso!')
+
         }else{
-            Group_Contact.destroy({where: {Group_groupId: Group_groupId, Contact_contactId: contacts}})
+            await Group_Contact.destroy({where: {Group_groupId: Group_groupId, Contact_contactId: contacts}})
+            req.flash('message', 'Contato removido com sucesso!')
 
         }
+
         req.session.save(()=>{
             res.redirect('/groups/groups')
         })
