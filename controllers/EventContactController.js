@@ -26,11 +26,11 @@ module.exports = class EventContactController{
         
         Array.prototype.forEach.call(contacts, Contact_contactId => {
 
-            ValidateService.validateObject({Event_eventId, Contact_contactId}, "eventContact").then(result => {
+            ValidateService.validateObject({Event_eventId, Contact_contactId}, "eventContact").then(async result => {
                 if(result){
                     return
                 }else{
-                    Event_Contact.create({Event_eventId, Contact_contactId, UserId})
+                    await Event_Contact.create({Event_eventId, Contact_contactId, UserId})
                 }
             })
         })

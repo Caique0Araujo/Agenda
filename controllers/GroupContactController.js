@@ -23,11 +23,11 @@ module.exports = class GroupContactController{
         
         Array.prototype.forEach.call(contacts, Contact_contactId => {
 
-        ValidateService.validateObject({Group_groupId, Contact_contactId}, "groupContact").then(result => {
+        ValidateService.validateObject({Group_groupId, Contact_contactId}, "groupContact").then(async result => {
             if(result){
                 return
             }else{
-                Group_Contact.create({Group_groupId, Contact_contactId, UserId})
+                await Group_Contact.create({Group_groupId, Contact_contactId, UserId})
             }
         })
 
