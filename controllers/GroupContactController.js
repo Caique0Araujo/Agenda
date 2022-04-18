@@ -34,7 +34,7 @@ module.exports = class GroupContactController{
                     console.log({Group_groupId, Contact_contactId, UserId})
                     await Group_Contact.create({Group_groupId, Contact_contactId, UserId})
                 }
-            }, Contact_contactId)
+            })
         }else{
             if(await ValidateService.validateObject({Group_groupId, Contact_contactId: contacts}, "groupContact")){
                 return
