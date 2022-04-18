@@ -80,7 +80,7 @@ h1{
     width: 100vw;
     height: 100vh;
     display: block;
-    overflow: auto;
+    overflow-y: auto;
     flex-direction: column;
     }
 
@@ -203,7 +203,7 @@ input:-webkit-autofill:focus {
 }
 
 
-.models-container div {
+.models-container .models-sub-container {
     border-bottom: 1px solid #ccc;
 }
 
@@ -418,4 +418,51 @@ footer {
 .data-p{
     font-size: medium;
     font-weight: 500;
+}
+
+
+.message-container + .container{
+    margin-bottom: 20px;
+}
+
+.models-sub-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.3em;
+}
+
+.container-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.3em;
+}
+
+.container-data{
+    padding: 0.3em;
+}
+
+.container-data p{
+    padding: 0;
+}
+
+#bttn-edit{
+    background-image: url(../img/editIcon.svg);
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+}
+
+#bttn-delete{
+    background-image: url(../img/deleteIcon.svg);
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
 }

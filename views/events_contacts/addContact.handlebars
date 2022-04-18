@@ -4,12 +4,12 @@
             <form action="/events_contacts/addContact" method="post">
                 <input type="hidden" name="event" id="event" value="{{event.id}}">
                 {{#each contacts}}
-                    <div class="checkbox-container">
+                    <p>
                         <span class="checkbox-l">
                             <input type="checkbox" name="contact" id="contact" value="{{this.id}}">
                             <label for="contact">{{this.name}}</label>
                         </span>
-                    </div>
+                    </p>
                 {{/each}}
                 <input type="submit" value="Adicionar" id="bttn-contact">
             </form>
