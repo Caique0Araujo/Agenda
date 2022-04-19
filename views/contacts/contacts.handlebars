@@ -7,10 +7,19 @@
         <h1>Contatos</h1>
         <div class="models-container">
             {{#each contacts}}
-                <div>
-                    <p><span class="bold"><a href="/contacts/contact/{{this.id}}" id="name-link">{{this.name}}</a></span></p>
-                    <p class="data-p"><span style="font-weight: 600;">Telefone:</span> {{this.fone}}</p> 
-                    <p class="data-p"><span style="font-weight: 600;">Email:</span> {{this.email}}</p>
+                <div class="models-sub-container">
+                    <div class="container-data">
+                        <p><span class="bold">{{this.name}}</a></span></p>
+                        <p class="data-p"><span style="font-weight: 600;">Telefone:</span> {{this.fone}}</p> 
+                        <p class="data-p"><span style="font-weight: 600;">Email:</span> {{this.email}}</p>
+                    </div>
+                    <div class="container-options">
+                        <a id="bttn-edit" href="/contacts/edit/{{this.id}}"></a>        
+                        <form action="/contacts/delete" method="post">
+                            <input type="hidden" name="id" value="{{this.id}}">
+                            <input type="submit" id="bttn-delete" value="">
+                        </form>
+                    </div>
                     
                 </div>
             {{/each}}
