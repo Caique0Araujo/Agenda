@@ -245,7 +245,8 @@ input:-webkit-autofill:focus {
     width: 70vw;
     margin: 10% auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, .60);  
+    background-color: rgba(255, 255, 255, 0.55);  
+    box-shadow: 0px 1.5px 5px 0px rgba(0,0,0,0.23);
     backdrop-filter: blur(20px);
     border-radius: 10px;
 }
@@ -355,7 +356,7 @@ p{
 
 .bttn-add{
     padding: 5px;
-    background-color: rgba(123, 123, 123, 0.4);  
+    background-color: rgba(195, 195, 195, 0.4);  
     box-shadow: 0px 1.5px 5px 0px rgba(0,0,0,0.23);
     color: #091420;
     backdrop-filter: blur(7px);
@@ -429,10 +430,18 @@ footer {
 }
 
 .models-sub-container{
+    background-color: rgba(195, 195, 195, 0.4);
+    box-shadow: 0px 1.5px 5px 0px rgba(0,0,0,0.23);
+    margin-bottom: 0.7em;
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 0.3em;
+}
+
+.models-sub-container:first-child{
+    margin-top: 2em;
 }
 
 .container-options{
