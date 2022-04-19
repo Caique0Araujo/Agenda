@@ -1,16 +1,16 @@
     <div class="container">
-        <h1>{{event.name}}</h1>
+        <h1 style="font-size: x-large; font-weight: 700;">Adicionar contatos ao evento: {{event.name}}</h1>
         <div class="contacts">
             <form action="/events_contacts/addContact" method="post">
                 <input type="hidden" name="event" id="event" value="{{event.id}}">
-                {{#each contacts}}
-                    <p>
-                        <span class="checkbox-l">
-                            <input type="checkbox" name="contact" id="contact" value="{{this.id}}">
-                            <label for="contact">{{this.name}}</label>
-                        </span>
-                    </p>
-                {{/each}}
+                <div class="checklist-container">
+                    {{#each contacts}}
+                    <label class="container-checkbox">{{this.name}} - {{this.email}}        
+                        <input type="checkbox" name="contact" id="contact" value="{{this.id}}">
+                        <span class="checkmark"></span>
+                    </label>     
+                    {{/each}}
+                </div>
                 <input type="submit" value="Adicionar" id="bttn-contact">
             </form>
         </div>

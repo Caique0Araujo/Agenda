@@ -9,7 +9,7 @@
             {{#each groups}}
                 <div class="models-sub-container">
                     <div class="container-data">
-                        <p><span class="bold"><a href="/groups/group/{{this.id}}" id="name-link">{{this.name}}</a></span></p>
+                        <p><span class="bold">{{this.name}}</a></span></p>
                         <p class="data-p"><span style="font-weight: 600;">Descrição:</span> {{this.description}}</p>
                         {{#if this.Contacts}}
                             <p class="data-p"><span style="font-weight: 600;">Contatos:</span> 
@@ -27,6 +27,8 @@
                             <input type="hidden" name="id" value="{{this.id}}">
                             <input type="submit" id="bttn-delete" value="">
                         </form>
+                        <a href="/groups_contacts/addContact/{{this.id}}" id="bttn-addContact"></a>
+                        <a href="/groups_contacts/editContacts/{{this.id}}" id="bttn-deleteContact"></a>
                     </div>
                 </div>
             {{/each}}

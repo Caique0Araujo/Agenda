@@ -85,6 +85,7 @@ h1{
     }
 
 .container{
+    padding: 10px;
     margin-top: 30px;
     min-width: 400px;
     min-height: 300px;
@@ -229,7 +230,9 @@ input:-webkit-autofill:focus {
 }
 
 .bold {
-    font-weight: bold;
+    font-size: large;
+    font-weight: 600;
+    color: black;
 }
 
 
@@ -448,6 +451,8 @@ footer {
 }
 
 #bttn-edit{
+    margin-right: 0.3em;
+
     background-image: url(../img/editIcon.svg);
     background-position: center; 
     background-repeat: no-repeat; 
@@ -465,4 +470,141 @@ footer {
     width: 20px;
     height: 20px;
     background-color: transparent;
+}
+
+#bttn-deleteContact{
+    background-image: url(../img/removeContact.svg);
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+}
+
+
+#bttn-addContact{
+    margin-left: 0.7em;
+    margin-right: 0.3em;
+    background-image: url(../img/addContact.svg);
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+}
+
+
+#bttn-password{
+
+    background-color: transparent;
+    color: #091420;
+    font-size: medium;
+    font-weight: 600;
+    margin: 0.3em;
+}
+
+#bttn-password:hover{
+    color: #7c7c7c;
+}
+
+#p-password{
+
+    background-color: transparent;
+    color: #515151  ;
+    font-size: medium;
+    font-weight: 500;
+    margin: 0.3em;
+}
+
+.contacts, .container #bttn-contact{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    min-width: 10em;
+    justify-content: center;
+}
+
+.checklist-container{
+    border-radius: 6px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: rgb(224, 224, 224);  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.container-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  /* Hide the default checkbox */
+  .container-checkbox input {
+    visibility: hidden;
+    cursor: pointer;
+    
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    border-radius: 4px;
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    height: 20px;
+    width: 20px;
+    background-color: lightgray;
+  }
+  
+  .container-checkbox:hover input ~ .checkmark {
+    background-color: gray;
+  }
+  
+  .container-checkbox input:checked ~ .checkmark {
+    background-color: blue;
+  }
+  
+  /* Create the mark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the mark when checked */
+  .container-checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the mark/indicator */
+  .container-checkbox .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+
+.container h1{
+    padding: 20px;
+}
+
+#linkedin-link{
+    color: #7c7c7c;
+    text-decoration: none;
+}
+#linkedin-link:hover{
+    color: #ffffff;
+    font-weight: 500;
 }
