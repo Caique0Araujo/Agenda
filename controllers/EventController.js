@@ -92,7 +92,9 @@ module.exports = class EventController{
         try {
             const events = await EventContactController.showEventsContacts(UserId)
             events.forEach(event => {
-            event.eventDate = DateService.formatDate(event.eventDate, false)
+                if(event.eventDate != null){
+                    event.eventDate = DateService.formatDate(event.eventDate, false)
+                }
         })
 
         res.render('events/events', {events: events})
