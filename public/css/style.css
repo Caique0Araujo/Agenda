@@ -355,7 +355,7 @@ p{
 
 
 .bttn-add{
-    padding: 5px;
+    padding: 5px 16px;
     background-color: rgba(195, 195, 195, 0.4);  
     box-shadow: 0px 1.5px 5px 0px rgba(0,0,0,0.23);
     color: #091420;
@@ -437,7 +437,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0.3em;
+    padding: 5px 10px;
 }
 
 .models-sub-container:first-child{
