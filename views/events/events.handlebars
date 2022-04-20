@@ -10,8 +10,12 @@
                 <div class="models-sub-container">
                     <div class="container-data">
                         <p><span class="bold">{{this.name}}</a></span></p>
-                        <p class="data-p"><span style="font-weight: 600;">Descrição:</span> {{this.description}}</p>
-                        <p class="data-p"><span style="font-weight: 600;">Data:</span> {{this.eventDate}}</p>
+                        {{#if this.description}}
+                            <p class="data-p"><span style="font-weight: 600;">Descrição:</span> {{this.description}}</p>
+                        {{/if}}
+                        {{#if this.eventDate}}
+                            <p class="data-p"><span style="font-weight: 600;">Data:</span> {{this.eventDate}}</p>
+                        {{/if}}
                         {{#if this.Contacts}}
                             <p class="data-p"><span style="font-weight: 600;">Contatos:</span> 
                                 {{#each this.Contacts}}
