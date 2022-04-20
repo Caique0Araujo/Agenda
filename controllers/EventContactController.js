@@ -28,12 +28,11 @@ module.exports = class EventContactController{
         const UserId = req.session.userid  
         if(Array.isArray(contacts)){
 
-            contacts.forEach(async function (Contact_contactId){
+            await contacts.forEach(async function (Contact_contactId){
 
                 if(await ValidateService.validateObject({Event_eventId, Contact_contactId}, "eventContact")){
                     return
                 }else{
-                    console.log({Event_eventId, Contact_contactId, UserId})
                     await Event_Contact.create({Event_eventId, Contact_contactId, UserId})
                 }
             })
@@ -117,7 +116,7 @@ module.exports = class EventContactController{
         const contacts = req.body.contacts
 
         if(Array.isArray(contacts)){
-            contacts.forEach(async Contact_contactId =>{
+            await contacts.forEach(async Contact_contactId =>{
                 await Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: Contact_contactId}})
             })
         req.flash('message', 'Contatos removidos com sucesso!')

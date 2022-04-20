@@ -26,12 +26,11 @@ module.exports = class GroupContactController{
 
         if(Array.isArray(contacts)){
 
-            contacts.forEach(async function (Contact_contactId){
+            await contacts.forEach(async function (Contact_contactId){
 
                 if(await ValidateService.validateObject({Group_groupId, Contact_contactId}, "groupContact")){
                     return
                 }else{
-                    console.log({Group_groupId, Contact_contactId, UserId})
                     await Group_Contact.create({Group_groupId, Contact_contactId, UserId})
                 }
             })
@@ -115,7 +114,7 @@ module.exports = class GroupContactController{
         
 
         if(Array.isArray(contacts)){
-            contacts.forEach(async Contact_contactId =>{
+            await contacts.forEach(async Contact_contactId =>{
                 await Group_Contact.destroy({where: {Group_groupId: Group_groupId, Contact_contactId: Contact_contactId}})
                 
             })
