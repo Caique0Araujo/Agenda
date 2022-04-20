@@ -120,11 +120,11 @@ module.exports = class EventContactController{
             contacts.forEach(async Contact_contactId =>{
                 await Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: Contact_contactId}})
             })
-        req.flash('message', 'Eventos removidos com sucesso!')
+        req.flash('message', 'Contatos removidos com sucesso!')
 
         }else{
             await Event_Contact.destroy({where: {Event_eventId: Event_eventId, Contact_contactId: contacts}})
-            req.flash('message', 'Evento removido com sucesso!')
+            req.flash('message', 'Contato removido com sucesso!')
 
         }
         req.session.save(()=>{
