@@ -4,9 +4,11 @@ const EncryptService = require("../services/EncryptService");
 const session = require("express-session");
 
 module.exports = class UserController {
-  static login(req, res) {
-    res.render("users/login");
-  }
+
+
+  // Register
+
+
   static register(req, res) {
     res.render("users/register");
   }
@@ -41,6 +43,13 @@ module.exports = class UserController {
       console.log(error);
     }
   }
+
+  // Login
+
+  static login(req, res) {
+    res.render("users/login");
+  }
+
   static async loginSave(req, res) {
     const {email, password} = req.body
 
@@ -58,7 +67,8 @@ module.exports = class UserController {
     }
 
     req.session.userid = user.id  
-    req.session.name = user.name 
+    req.session.name = user.name
+    req.session.email = user.email
 
     req.flash('message', 'Login efetuado com sucesso!') 
         
@@ -67,36 +77,18 @@ module.exports = class UserController {
     })
 
   }
+
+  // Logout
+
+
   static logout(req, res){
     req.session.destroy((err) => {
       res.redirect('/users/login')
     })
   }
 
-  static editPassword(req, res){
-    res.render('users/editPassword')
-  }
+  // Edit info
 
-  static async editPasswordSave(req, res){
-    const id = req.session.userid
-    const user = {
-      name: req.body.name,
-      fone: req.body.fone,
-      email: req.body.email
-    }
-
-    try {
-      await User.update(user, {where: {id: id}})
-      req.flash("message", "Informações alteradas com sucesso!");
-      req.session.save(()=>{
-        res.redirect('/users/config')
-    })
-      
-    } catch (error) {
-      console.log(error)
-    }
-
-  }
 
   static async config(req, res){
 
@@ -105,15 +97,61 @@ module.exports = class UserController {
     try {
       const user = await User.findOne({where: {id: UserId}, raw: true})
       res.render('users/config', {user})
-
-      
     } catch (error) {
       console.log(error)
     }
+  }
+
+  static async configSave(req, res){
+    const id = req.session.userid
+    const user = {
+      name: req.body.name,
+      fone: req.body.fone,
+      email: req.body.email
+    }
+    // Se entrar pode ter email duplicado
+    if(await ValidateService.validateEmail(user.email)){
+
+      if(user.email != req.session.email){
+        req.flash("message", "Email pertencente a outro usuário!");
+        req.session.save(()=>{
+          res.redirect('/users/config')
+        })
+        return
+      }
+      }
+
+        try {
+          await User.update(user, {where: {id: id}}).then((result)=>{
+            if(result){
+              req.session.name = user.name
+              req.flash("message", "Informações alteradas com sucesso!");
+              req.session.save(()=>{
+                res.redirect('/users/config')
+            })
+    
+            }
+          }).catch(err => console.log(err))
+          
+          
+        } catch (error) {
+          console.log(error)
+        }
+    }
+
+
+
+
+  // Edit password
+
+
+  static editPassword(req, res){
+
+    res.render('users/editPassword')
 
   }
 
-  static async configSave(req,res){
+  static async editPasswordSave(req,res){
 
     const oldPassword = req.body.oldPassword
     const newPassword = req.body.newPassword
