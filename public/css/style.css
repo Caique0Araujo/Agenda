@@ -8,6 +8,8 @@
 }
 
 
+
+
 body {
     background-image: url(../img/background.jpg);
     background-attachment: fixed;
@@ -38,6 +40,7 @@ body {
     background-color: #13293d;
     border-radius: 0;
     margin-top: 0;
+    margin-bottom: 0;
     display: flex;
     justify-content: space-between;
     width: 100vw;
@@ -251,6 +254,18 @@ input:-webkit-autofill:focus {
     border-radius: 10px;
 }
 
+
+
+.message-container ~  .sub-container{
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.message-container ~  .container-lists > .sub-container{
+    margin-top: 0;
+    padding-top: 0;
+}
+
 #dropdown-bttn{
     color: #9d9d9d;
     background-color: #13293d;
@@ -459,17 +474,16 @@ footer {
     padding: 0;
 }
 
+
 #bttn-edit{
     margin-right: 0.3em;
-
-    background-image: url(../img/editIcon.svg);
+    background: rgba(0,0,0,0) url(../img/editIcon.svg);
     background-position: center; 
-    background-repeat: no-repeat; 
     background-size: cover; 
     width: 20px;
     height: 20px;
-    background-color: transparent;
 }
+
 
 #bttn-delete{
     background-image: url(../img/deleteIcon.svg);
@@ -503,6 +517,11 @@ footer {
     height: 20px;
     background-color: transparent;
 }
+
+#bttn-edit:hover,#bttn-addContact:hover,#bttn-deleteContact:hover,#bttn-delete:hover{
+    filter: invert(52%) sepia(0%) saturate(1%) hue-rotate(202deg) brightness(92%) contrast(83%);
+}
+
 
 
 #bttn-password{
@@ -555,15 +574,12 @@ footer {
     cursor: pointer;
     font-size: 20px;
   }
-  
-  /* Hide the default checkbox */
   .container-checkbox input {
     visibility: hidden;
     cursor: pointer;
     
   }
   
-  /* Create a custom checkbox */
   .checkmark {
     border-radius: 4px;
     position: absolute;
@@ -582,19 +598,15 @@ footer {
     background-color: blue;
   }
   
-  /* Create the mark/indicator (hidden when not checked) */
   .checkmark:after {
     content: "";
     position: absolute;
     display: none;
   }
   
-  /* Show the mark when checked */
   .container-checkbox input:checked ~ .checkmark:after {
     display: block;
   }
-  
-  /* Style the mark/indicator */
   .container-checkbox .checkmark:after {
     left: 8px;
     top: 4px;
