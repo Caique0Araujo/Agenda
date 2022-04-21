@@ -1,17 +1,17 @@
-    <div class="container">
-        <h1 style="font-size: x-large; font-weight: 700;">Adicionar contatos ao grupo: {{group.name}}</h1>
-        <div class="contacts">
-            <form action="/groups_contacts/addContact" method="post">
-                <input type="hidden" name="group" id="group" value="{{group.id}}">
-                <div class="checklist-container">
-                    {{#each contacts}}
-                    <label class="container-checkbox">{{this.name}} - {{this.email}}        
-                        <input type="checkbox" name="contact" id="contact" value="{{this.id}}">
-                        <span class="checkmark"></span>
-                    </label>     
-                    {{/each}}
-                </div>
-                <input type="submit" value="Adicionar" id="bttn-contact">
-            </form>
-        </div>
+<div class="container">
+    <h1 style="font-size: x-large; font-weight: 700;">Adicionar contatos ao grupo: {{group.name}}</h1>
+    <div class="contacts">
+        <form action="/groups_contacts/addContact" method="post">
+            <input type="hidden" name="group" id="group" value="{{group.id}}">
+            <div class="checklist-container">
+                {{#each contacts}}
+                <label class="container-checkbox">{{this.name}} - {{this.email}}
+                    <input type="checkbox" name="contact" id="contact" value="{{this.id}}">
+                    <span class="checkmark"></span>
+                </label>
+                {{/each}}
+            </div>
+            <input type="submit" value="Adicionar" id="bttn-contact">
+        </form>
     </div>
+</div>

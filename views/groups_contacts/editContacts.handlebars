@@ -1,15 +1,15 @@
 <div class="container">
-    <h1 style="font-size: x-large;  font-weight: 700;" >Remover contatos de: {{groups.name}}</h1>
+    <h1 style="font-size: x-large;  font-weight: 700;">Remover contatos de: {{groups.name}}</h1>
     <form action="/groups_contacts/removeContacts" method="post" class="form-add">
-            <input type="hidden" name="idGroup" value="{{groups.id}}">
-                <div class="checklist-container">
-                    {{#each groups.Contacts}}
-                        <label class="container-checkbox">{{this.name}} - {{this.email}}        
-                            <input type="checkbox" name="contacts" id="contacts" value="{{this.id}}">
-                            <span class="checkmark"></span>
-                        </label>   
-                    {{/each}}
-                </div>
-            <input type="submit" value="Remover" id="bttn-contact">
+        <input type="hidden" name="idGroup" value="{{groups.id}}">
+        <div class="checklist-container">
+            {{#each groups.Contacts}}
+            <label class="container-checkbox">{{this.name}} - {{this.email}}
+                <input type="checkbox" name="contacts" id="contacts" value="{{this.id}}">
+                <span class="checkmark"></span>
+            </label>
+            {{/each}}
+        </div>
+        <input type="submit" value="Remover" id="bttn-contact">
     </form>
 </div>

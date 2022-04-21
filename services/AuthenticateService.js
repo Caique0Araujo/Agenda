@@ -1,25 +1,22 @@
-const UserController = require("../controllers/UserController")
-const User = require("../models/User")
+const UserController = require("../controllers/UserController");
+const User = require("../models/User");
 
-module.exports.checkAuth = async function(req, res, next) {
+module.exports.checkAuth = async function (req, res, next) {
+  const userid = req.session.userid;
 
-    const userid = req.session.userid
+  if (!userid) {
+    req.flash("message", "Faça login para continuar");
+    res.render("users/login");
+    return;
+  }
 
-    if(!userid){
-        req.flash('message', "Faça login para continuar")
-        res.render('users/login')
-        return
-    }
+  const user = await User.findOne({ where: { id: userid } });
 
-    const user = await User.findOne({where: {id: userid}})
+  if (!user) {
+    req.flash("message", "Faça login para continuar");
+    res.redirect("/users/logout");
+    return;
+  }
 
-
-    if(!user){
-        req.flash('message', "Faça login para continuar")
-        res.redirect('/users/logout')
-        return
-
-    }
-
-    next()
-}
+  next();
+};

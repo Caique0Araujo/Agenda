@@ -1,5 +1,5 @@
-    <div class="container-lists">
-    
+<div class="container-lists">
+
     <div class="sub-container">
         <div class="bttn-links">
             <a class="bttn-add" href="/groups/add">Adicionar grupos</a>
@@ -7,34 +7,34 @@
         <h1>Grupos</h1>
         <div class="models-container">
             {{#each groups}}
-                <div class="models-sub-container">
-                    <div class="container-data">
-                        <p><span class="bold">{{this.name}}</a></span></p>
-                        {{#if this.description}}
-                            <p class="data-p"><span style="font-weight: 600;">Descrição:</span> {{this.description}}</p>
-                        {{/if}}
-                        {{#if this.Contacts}}
-                            <p class="data-p"><span style="font-weight: 600;">Contatos:</span> 
-                                {{#each this.Contacts}}
-                                        <span style="margin-right: auto;">
-                                            {{this.name}} <span style="color: blue;">|</span>
-                                        </span>
-                                {{/each}}
-                            </p>
-                        {{/if}}
-                    </div>
-                    <div class="container-options">
-                        <a id="bttn-edit" href="/groups/edit/{{this.id}}"></a>        
-                        <form action="/groups/delete" method="post">
-                            <input type="hidden" name="id" value="{{this.id}}">
-                            <input type="submit" id="bttn-delete" value="">
-                        </form>
-                        <a href="/groups_contacts/addContact/{{this.id}}" id="bttn-addContact"></a>
-                        <a href="/groups_contacts/editContacts/{{this.id}}" id="bttn-deleteContact"></a>
-                    </div>
+            <div class="models-sub-container">
+                <div class="container-data">
+                    <p><span class="bold">{{this.name}}</a></span></p>
+                    {{#if this.description}}
+                    <p class="data-p"><span style="font-weight: 600;">Descrição:</span> {{this.description}}</p>
+                    {{/if}}
+                    {{#if this.Contacts}}
+                    <p class="data-p"><span style="font-weight: 600;">Contatos:</span>
+                        {{#each this.Contacts}}
+                        <span style="margin-right: auto;">
+                            {{this.name}} <span style="color: blue;">|</span>
+                        </span>
+                        {{/each}}
+                    </p>
+                    {{/if}}
                 </div>
+                <div class="container-options">
+                    <a id="bttn-edit" href="/groups/edit/{{this.id}}"></a>
+                    <form action="/groups/delete" method="post">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" id="bttn-delete" value="">
+                    </form>
+                    <a href="/groups_contacts/addContact/{{this.id}}" id="bttn-addContact"></a>
+                    <a href="/groups_contacts/editContacts/{{this.id}}" id="bttn-deleteContact"></a>
+                </div>
+            </div>
             {{/each}}
         </div>
-        
+
     </div>
-    </div>
+</div>

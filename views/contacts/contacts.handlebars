@@ -1,5 +1,5 @@
-   <div class="container-lists">
-    
+<div class="container-lists">
+
     <div class="sub-container">
         <div class="bttn-links">
             <a class="bttn-add" href="/contacts/add">Adicionar contatos</a>
@@ -7,27 +7,26 @@
         <h1>Contatos</h1>
         <div class="models-container">
             {{#each contacts}}
-                <div class="models-sub-container">
-                    <div class="container-data">
-                        <p><span class="bold">{{this.name}}</a></span></p>
-                        {{#if this.fone}}
-                            <p class="data-p"><span style="font-weight: 600;">Telefone:</span> {{this.fone}}</p> 
-                        {{/if}}
-                        {{#if this.email}}
-                            <p class="data-p"><span style="font-weight: 600;">Email:</span> {{this.email}}</p>
-                        {{/if}}
-                    </div>
-                    <div class="container-options">
-                        <a id="bttn-edit" href="/contacts/edit/{{this.id}}"></a>        
-                        <form action="/contacts/delete" method="post">
-                            <input type="hidden" name="id" value="{{this.id}}">
-                            <input type="submit" id="bttn-delete" value="">
-                        </form>
-                    </div>
-                    
+            <div class="models-sub-container">
+                <div class="container-data">
+                    <p><span class="bold">{{this.name}}</a></span></p>
+                    {{#if this.fone}}
+                    <p class="data-p"><span style="font-weight: 600;">Telefone:</span> {{this.fone}}</p>
+                    {{/if}}
+                    {{#if this.email}}
+                    <p class="data-p"><span style="font-weight: 600;">Email:</span> {{this.email}}</p>
+                    {{/if}}
                 </div>
+                <div class="container-options">
+                    <a id="bttn-edit" href="/contacts/edit/{{this.id}}"></a>
+                    <form action="/contacts/delete" method="post">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" id="bttn-delete" value="">
+                    </form>
+                </div>
+
+            </div>
             {{/each}}
         </div>
     </div>
-    </div>
-
+</div>
