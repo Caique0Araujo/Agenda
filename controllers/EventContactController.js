@@ -30,15 +30,12 @@ module.exports = class EventContactController{
 
             await contacts.forEach(async function (Contact_contactId){
 
-                if(await ValidateService.validateObject({Event_eventId, Contact_contactId}, "eventContact")){
-                    return
-                }else{
+                if(await ValidateService.validateObject({Event_eventId, Contact_contactId}, "eventContact") === false)
                     await Event_Contact.create({Event_eventId, Contact_contactId, UserId})
-                }
             })
         }else{
             if(await ValidateService.validateObject({Event_eventId, Contact_contactId: contacts}, "eventContact")){
-                return
+                req.flash('message', 'Contato já está cadastrado no evento')
             }else{
                 await Event_Contact.create({Event_eventId, Contact_contactId: contacts, UserId})
             }

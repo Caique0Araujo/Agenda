@@ -23,20 +23,19 @@ module.exports = class GroupContactController{
         const contacts = req.body.contact;
         const Group_groupId = req.body.group
         const UserId = req.session.userid  
+        var cont = 0
+        
 
         if(Array.isArray(contacts)){
 
             await contacts.forEach(async function (Contact_contactId){
 
-                if(await ValidateService.validateObject({Group_groupId, Contact_contactId}, "groupContact")){
-                    return
-                }else{
+                if(await ValidateService.validateObject({Group_groupId, Contact_contactId}, "groupContact") === false)
                     await Group_Contact.create({Group_groupId, Contact_contactId, UserId})
-                }
             })
         }else{
             if(await ValidateService.validateObject({Group_groupId, Contact_contactId: contacts}, "groupContact")){
-                return
+                req.flash('message', 'Contato já está cadastrado no grupo')
             }else{
                 await Group_Contact.create({Group_groupId, Contact_contactId: contacts, UserId})
             }
