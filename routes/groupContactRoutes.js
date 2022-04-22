@@ -4,9 +4,9 @@ const checkAuth = require("../services/AuthenticateService").checkAuth;
 
 const GroupContactController = require("../controllers/GroupContactController");
 
-router.get("/addContact/:id", GroupContactController.addContact);
-router.post("/addContact", GroupContactController.addContactSave);
-router.get("/editContacts/:id", GroupContactController.editContacts);
-router.post("/removeContacts/", GroupContactController.removeContact);
+router.get("/addContact/:id", checkAuth, GroupContactController.addContact);
+router.post("/addContact", checkAuth, GroupContactController.addContactSave);
+router.get("/editContacts/:id", checkAuth, GroupContactController.editContacts);
+router.post("/removeContacts/", checkAuth, GroupContactController.removeContact);
 
 module.exports = router;
