@@ -114,8 +114,8 @@ h1{
 }
 
 .container form{
-    padding: 20px;
-    margin: 20px;
+    padding: 1.0em;
+    margin: 1em;
 }
 
 
@@ -125,17 +125,17 @@ form .container-fields{
 }
 
 .container-bttns{
+    padding: 0.5em;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
 }
 
 
-.container-bttns .bttn-submit{
-    margin-top: 20px;
-    width: 200px;
-    align-items: center;
-    border-radius: 5px;
+.container-bttns .bttn-submit,#delete-user{
+    margin-top: 1em;
+    width: 40%;
 }
 
 .container-fields .textfields{
@@ -628,4 +628,13 @@ footer {
 #linkedin-link:hover{
     color: #ffffff;
     font-weight: 500;
+}
+
+#delete-user{
+    text-align: center;
+    background-color: #200909;
+    color: white;
+    border: 1px solid transparent;
+    padding: 5px;
+    border-radius: 5px;
 }

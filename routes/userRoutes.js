@@ -12,5 +12,7 @@ router.get("/config", checkAuth, UserController.config);
 router.post("/config", checkAuth, UserController.configSave);
 router.get("/editPassword", checkAuth, UserController.editPassword);
 router.post("/editPassword", checkAuth, UserController.editPasswordSave);
+router.get("/deleteUser", checkAuth, UserController.deleteUser)
+router.post("/deleteUser", checkAuth, UserController.deleteUserSave)
 
 module.exports = router;

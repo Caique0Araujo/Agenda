@@ -159,4 +159,35 @@ module.exports = class UserController {
       }
     }
   }
+
+  static deleteUser(req, res){
+    res.render('users/deleteUser')
+  }
+
+  static async deleteUserSave(req, res){
+    const password = req.body.password
+    const userid = req.session.userid
+
+    const user = await User.findOne({where: {id: userid}})
+
+    if(EncryptService.decrypt(password, user.password)){
+      req.flash("message", "Senha incorreta! ");
+      res.render("users/config");
+    }else{
+      User.destroy({where:{id: userid}}).then((result)=>{
+        if(result){
+          req.session.destroy((err) => {
+            res.redirect("/users/login");
+            if(err){
+              console.log(err)
+            }
+          });
+        }
+      }).catch(err=>console.log(err))
+    }
+
+
+  }
+
+
 };
