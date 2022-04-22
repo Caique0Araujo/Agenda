@@ -18,7 +18,18 @@ module.exports = class EventContactController {
       where: { UserId: userid },
     });
 
-    res.render("events_contacts/addContact", { event, contacts });
+    console.log(contacts)
+
+    if(contacts.length > 0){
+      res.render("events_contacts/addContact", { event, contacts });
+    }else{
+      req.flash("message", "Não há contatos para adicionar, cadastre alguns!");
+      req.session.save(() => {
+        res.redirect("/events/events");
+      });  
+    }
+      
+
   }
 
   static async addContactSave(req, res) {

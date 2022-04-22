@@ -30,7 +30,9 @@
                         <input type="submit" id="bttn-delete" value="">
                     </form>
                     <a href="/groups_contacts/addContact/{{this.id}}" id="bttn-addContact"></a>
-                    <a href="/groups_contacts/editContacts/{{this.id}}" id="bttn-deleteContact"></a>
+                    {{#if this.Contacts}}
+                        <a href="/groups_contacts/editContacts/{{this.id}}" id="bttn-deleteContact"></a>
+                    {{/if}}
                 </div>
             </div>
             {{/each}}

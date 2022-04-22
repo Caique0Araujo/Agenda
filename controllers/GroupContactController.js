@@ -18,7 +18,15 @@ module.exports = class GroupContactController {
       where: { UserId: userid },
     });
 
-    res.render("Groups_contacts/addContact", { group, contacts });
+    if(contacts.length > 0){
+      res.render("Groups_contacts/addContact", { group, contacts });
+    }else{
+      req.flash("message", "Não há contatos para adicionar, cadastre alguns!");
+      req.session.save(() => {
+        res.redirect("/groups/groups");
+      });  
+    }
+
   }
 
   static async addContactSave(req, res) {
